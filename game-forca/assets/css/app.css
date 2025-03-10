@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Kode Mono", monospace;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.container {
+    max-width: 1320px;
+    margin: auto;
+    padding: 0;
+    position: relative;
+}
+
+.game .title h1{
+    font-size: 5rem;
+    margin-bottom: 2rem;
+}
+
+.game .life h3{
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.game .game-forca .word .letter.success {
+    background-color: rgba(25, 255, 25, 1);
+}
+
+.game .game-forca .word .letter.success span {
+    color: rgba(0, 0, 0, 1);
+}
+
+.game .game-forca .word .letter {
+    background-color: rgba(75, 255, 75, 0.25);
+    border-radius: 0.250rem;
+    height: 160px;
+    width: 80px;
+}
+
+.game .game-forca .word .letter span {
+    font-size: 5rem;
+    text-transform: uppercase;
+}

@@ -1,0 +1,66 @@
+#dv-modal {
+    overflow-y: auto;
+    display: none;
+}
+
+.modal {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.modal-content {
+    width: 100%;
+    max-width: 750px;
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0 0 2px rgba(255, 255, 255, 1);
+    border-radius: 5px;
+}
+
+.modal-content .modal-header {
+    padding: 1rem 2rem;
+    border-bottom: solid 2px rgba(0, 0, 0, 1);
+}
+
+.modal i {
+    padding: 0;
+}
+
+.modal .modal-body {
+    display: none;
+    padding: 1rem;
+}
+
+.modal .modal-body h2,
+.modal .modal-body .btns-modal {
+    padding: 0 1rem;
+}
+
+.modal .modal-body form {
+    margin: 10px 0;
+}
+
+.modal .modal-body form .btns-modal button {
+    border: none;
+    background-color: transparent;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 1);
+    font-weight: bold;
+}
+
+.modal .modal-body form .btns-modal button[data-form="confirmar"] {
+    background-color: rgba(0, 150, 0, 1);
+    margin-right: 1rem;
+}
+
+.modal .modal-body form .btns-modal button[data-form='cancelar'] {
+    background-color: rgba(255, 0, 0, 1);
+}
+
+.modal p {
+    text-align: justify;
+}

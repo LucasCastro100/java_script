@@ -1,0 +1,94 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Kode Mono", monospace;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.container {
+    max-width: 1320px;
+    margin: auto;
+    padding: 0;
+    position: relative;
+}
+
+section {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    position: relative;
+}
+
+section#to-do-list {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+section#to-do-list nav{
+    margin-bottom: 1rem;
+}
+
+section#to-do-list .title {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+section#to-do-list .add-activities {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+section#to-do-list .add-activities .item {
+    padding: 0.375rem;
+    border-radius: 0.375rem;
+    border: solid 2px rgba(0, 0, 0, 1);
+    color: rgba(0, 0, 0, 1);
+}
+
+section#to-do-list .add-activities .btn {
+    padding: 0.375rem;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: rgba(50, 50, 255, 1);
+    font-weight: bold;
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 1);
+}
+
+section#to-do-list .list-activities ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+section#to-do-list .list-activities ul li{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+section#to-do-list .list-activities ul li button{
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.25rem;
+    border: none;
+    border-radius: 0.25rem;
+    transition: 0.5s all;
+}
+
+section#to-do-list .list-activities ul li button:hover{
+    background-color: rgba(150,150,255, 0.85);
+}

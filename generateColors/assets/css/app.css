@@ -1,0 +1,10 @@
+@import 'page/variables.css';
+@import 'page/responsive.css';
+@import 'page/standard.css';
+@import 'page/style.css';
+
+@import 'elements/modal.css';
+@import 'elements/form.css';
+@import 'elements/button.css';
+@import 'elements/alert.css';
+@import 'elements/table.css';
