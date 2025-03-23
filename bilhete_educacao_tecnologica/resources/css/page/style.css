@@ -60,6 +60,10 @@
     justify-content: center;
 }
 
+.alter-show .card{
+    width: 100% !important;
+}
+
 @media print {
     .page-break {
         page-break-before: always;
