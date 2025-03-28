@@ -1,6 +1,7 @@
 # Ignorar todas as pastas __pycache__ em qualquer diretório
 **/logo_marista/
 **/js/alunos_2025.json
+**/.env
 
 # Ignorar arquivos bytecode Python
 *.pyc
@@ -14,6 +15,9 @@ env/
 .vscode/
 .idea/
 *.swp
+
+# Ignorar node_modules
+**/node_modules
 
 # Ignorar arquivos gerados pelo sistema operacional
 .DS_Store
