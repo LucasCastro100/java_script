@@ -2,19 +2,19 @@ const select = async (element) => document.querySelector(element)
 const selectAll = async (element) => document.querySelectorAll(element)
 
 const getDados = async () => {
-    await fetch('resources/js/nome_arquivo.json')
+    await fetch('resources/js/alunos.json')
         .then(response => response.json())
         .then(async data => {
-            await getHeight(data)
+            console.log(data)
+            await listAlunos(data)
+            // await getHeight()            
         })
         .catch(error => {
             console.error('Erro ao ler o arquivo JSON:', error);
         });
 }
 
-const getHeight = async (values) => {
-    await listAlunos(values)
-    
+const getHeight = async () => {       
     await new Promise(async (resolve, reject) => {
         setTimeout(async () => {
             const cards = await selectAll('.card')
@@ -26,28 +26,26 @@ const getHeight = async (values) => {
                 heightsCard.push(itens.clientHeight)
             })
         
-            maxNumber = Math.max(...heightsCard)
-            console.log(maxNumber)     
+            maxNumber = Math.max(...heightsCard)             
         }, 500)
     })
-}
-    
+}    
 
 const listAlunos = async (values) => { 
     await new Promise(async (resolve, reject) => {
         const naps = { nap1: {}, nap2: {}, nap3: {} }
         const listAlunos = await select('.listAlunos')
-        const link = 'url_destino'
+        const link = 'https://mundoz.zoom.education/'
         
         setTimeout(() => {
             let html = ''
-            let nap1 = values.filter(item => item.TURMA[3] < 2)
-            let nap2 = values.filter(item => item.TURMA[3] > 1 && item.TURMA[3] < 6)
-            let nap3 = values.filter(item => item.TURMA[3] > 5)
+            let nap1 = values.filter(item => item.TURMA[0] < 2)
+            let nap2 = values.filter(item => item.TURMA[0] > 1 && item.TURMA[0] < 6)
+            let nap3 = values.filter(item => item.TURMA[0] > 5)
 
             naps.nap1 = nap1
             naps.nap2 = nap2
-            naps.nap3 = nap3
+            naps.nap3 = nap3            
 
             Object.keys(naps).forEach(nap => {
                 let newVector = []
@@ -71,20 +69,20 @@ const listAlunos = async (values) => {
                         html += `<div class="col-12">`
                         html += `<p class="title-card bold text-center">DADOS DE ACESSO À PLATAFORMA ZOOM</p>`
                         html += `</div>`
-                        html += `<div class="logo">`
+                        // html += `<div class="logo">`
                         // html += `<img src="/resources/img/logo_marista/logo_vertical_preta.png">`
-                        html += `<div>`                       
+                        // html += `<div>`                       
                         html += `<span>TURMA: ${itens.TURMA}</span>`
-                        html += `<span>ALUNO: ${itens.NOME}</span>`
+                        html += `<span>ALUNO: ${itens.ALUNO}</span>`
                         html += `<span>LINK: ${link}</span>`
-                        html += `<span>LOGIN: ${itens.RA}</span>`
-                        html += `<span>SENHA: ${itens.SENHA}</span>`
+                        html += `<span>LOGIN: ${itens.USUARIO}</span>`
+                        html += `<span>SENHA: Inicial@123</span>`
                         html += `<span>RECUPERAR SENHA: ${itens.EMAIL}</span>`
                         html += `</div>`
                         html += `</div>`                        
                         // html += `<p class="obs bold text-center">OBS: CASO VOCÊ TENHA SE CADASTRADO, ENTRE COM SEUS DADOS.</p>`
-                        html += `</div>`
-                        html += `</div>`
+                        // html += `</div>`
+                        // html += `</div>`
                     })
                     html += `</div>`
                     html += `</div>`
