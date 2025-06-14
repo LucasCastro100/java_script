@@ -1,6 +1,5 @@
 # Ignorar todas as pastas __pycache__ em qualquer diretório
-**/logo_marista/
-**/js/alunos_2025.json
+**/js/
 **/.env
 
 # Ignorar arquivos bytecode Python
