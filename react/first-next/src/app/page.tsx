@@ -1,8 +1,9 @@
-
-export default function Home() {
+const Page = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <p className="text-xl font-semibold text-gray-800">Olá, mundo</p>
+    <div className="min-h-screen bg-slate-300">
+      <p className="text-xl font-semibold text-gray-800">Home</p>
     </div>
   );
 }
+
+export default Page;
