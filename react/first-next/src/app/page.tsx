@@ -1,7 +1,10 @@
+import Person from "./components/Person";
+
 const Page = () => {
   return (
-    <div className="min-h-screen bg-slate-300">
+    <div className="bg-slate-300">
       <p className="text-xl font-semibold text-gray-800">Home</p>
+      <Person name="Lucas" />
     </div>
   );
 }
