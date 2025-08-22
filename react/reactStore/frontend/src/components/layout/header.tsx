@@ -6,10 +6,6 @@ import Link from "next/link";
 import { useState } from "react";
 import HeaderSarch from "./header-search";
 
-type Menuitem = {
-    label: string;
-    href: string;
-}
 
 const Header = () => {
     const menu: Menuitem[] = [
@@ -24,7 +20,7 @@ const Header = () => {
     return (
         <header className="bg-white border-b border-gray-200">
             <div className="bg-black text-white text-center p-5">
-                <strong>FRETE GRÁTIS</strong> para todo o Nordeste nas compras acima de R$ 199,00. <strong> APROVEITA!</strong>
+                <strong>FRETE GRÁTIS</strong> para todo o Brasil nas compras acima de R$ 00,00. <strong> APROVEITA!</strong>
             </div>
 
             <div className="w-full max-w-6xl mx-auto p-5">
