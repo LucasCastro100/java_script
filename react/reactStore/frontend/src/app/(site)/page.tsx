@@ -16,7 +16,7 @@ const Page = () => {
     <div className="">
       <Banners list={data.banners} />
 
-      <div className="mt-4 flex flex-col md:flex-row gap-4 md:gap-8">
+      <div className="mt-8 flex flex-col md:flex-row gap-4 md:gap-8">
         <BenefitCard
           icon="/assets/ui/truck-line.png"
           alt="Frete grátis"
@@ -24,7 +24,7 @@ const Page = () => {
           description="Para todo o Brasil."
         />
 
-        <BenefitCard
+        <BenefitCard        
           icon="/assets/ui/discount-percent-line.png"
           alt="Desconto"
           title="Muitas ofertas"
@@ -39,9 +39,8 @@ const Page = () => {
         />
       </div>
 
-      <div className="mt-4">
-        <ProductListSkeleton />
-      </div>
+      <ProductListSkeleton />
+      <ProductListSkeleton />
     </div>
   );
 }
