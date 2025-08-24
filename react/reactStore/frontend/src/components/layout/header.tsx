@@ -44,10 +44,8 @@ const Header = () => {
                                         <li>
                                             <Link key={item.label} href={item.href}>
                                                 <div className="font-medium text-lg text-gray-500">{item.label}</div>
-
                                             </Link>
                                         </li>
-
                                     ))}
                                 </ul>
 

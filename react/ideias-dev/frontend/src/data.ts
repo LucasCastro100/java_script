@@ -8,5 +8,11 @@ export const data = {
             tags: ["react", "typescript", "nextjs", "tailwindcss"],
             url: "/projetos/imc"
         },
-    ] 
+    ],
+    menuHeader: [
+        { label: "Home", href: "/" },
+        { label: "Projetos", href: "/projetos" },
+        { label: "Sobre", href: "/sobre" },
+        { label: "Contato", href: "/contato" },
+    ],
 }

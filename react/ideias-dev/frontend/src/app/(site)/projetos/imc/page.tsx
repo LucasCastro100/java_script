@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import ImcCalc from "./ImcCalc";
 
 export const metadata: Metadata = {
   title: "Minha Página",
@@ -7,14 +8,12 @@ export const metadata: Metadata = {
     { name: "Lucas Oliveira", url: "https://meusite.com/autor/lucas" },
   ],
   keywords: ["Next.js", "React", "Tailwind"],
-}
+};
 
-const Page = () => {
+export default function Page() {
   return (
-    <div className="">
-      <p className="">IMC</p>
+    <div className="mt-8">
+      <ImcCalc />
     </div>
   );
 }
-
-export default Page;

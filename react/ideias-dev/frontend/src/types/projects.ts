@@ -2,7 +2,7 @@ export type Project = {
     name: string;
     description: string;
     slug: string;
-    // image?: string; // Optional, if you want to include images later
+    // image?: string;
     tags: string[];
-    url: string; // URL to the project page
+    url: string;
 }
