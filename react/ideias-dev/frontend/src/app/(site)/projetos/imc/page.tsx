@@ -13,6 +13,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <div className="mt-8">
+      <h2 className="font-bold text-2xl mb-4">Calculadora de IMC</h2>
       <ImcCalc />
     </div>
   );

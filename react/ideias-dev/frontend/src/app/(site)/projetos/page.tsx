@@ -21,8 +21,18 @@ const Page = () => {
       <h2 className="font-bold text-2xl">PROJETOS</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-4 gap-4">
         {list.map((project) => (
-          <Link href={project.url} className="mb-4 p-4 border rounded-lg hover:bg-gray-100">
-            <div key={project.slug} className="text-md font-bold text-gray-700">{project.slug}</div>
+          <Link
+            href={project.url}
+            key={project.slug}
+            className="group block rounded-2xl border border-gray-200 bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+          >
+            <h3 className="text-lg font-semibold text-gray-800 transition-colors group-hover:text-indigo-600">
+              {project.name}
+            </h3>
+
+            <p className="mt-2 text-sm text-gray-600 line-clamp-3">
+              {project.description}
+            </p>
           </Link>
         ))}
       </div>
