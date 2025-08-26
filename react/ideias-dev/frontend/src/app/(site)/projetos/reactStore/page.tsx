@@ -15,7 +15,7 @@ const Page = () => {
     <div className="">
       <TitlePage title="Projeto Store" />
 
-      <div className="w-full max-w-6xl mx-auto">
+      <div className="w-full max-w-6xl mx-auto p-4">
 
       </div>
     </div>

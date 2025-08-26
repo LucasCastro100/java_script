@@ -22,7 +22,7 @@ export const Header = () => {
                                         {list.map((item) => (
                                             <li>
                                                 <Link key={item.label} href={item.href}>
-                                                    <div className="font-medium text-lg text-gray-500">{item.label}</div>
+                                                    <div className="font-semibold text-lg text-gray-500 hover:text-blue-400">{item.label}</div>
                                                 </Link>
                                             </li>
                                         ))}

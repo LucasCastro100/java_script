@@ -16,7 +16,7 @@ export default function Page() {
     <div className="">
       <TitlePage title="Projeto IMC" />
 
-      <div className="w-full max-w-6xl mx-auto">
+      <div className="w-full max-w-6xl mx-auto p-4">
         <ImcCalc />
       </div>
     </div>    
