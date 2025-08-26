@@ -46,7 +46,7 @@ const ImcCalc = () => {
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
       {!imc && (
         <div className="col-span-1 md:col-span-2">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 h-full">
             {list.map((imc) => (
               <div className={`${imc.color} border border-gray-100 rounded-lg p-4 text-center flex flex-col items-center justify-center`}>
                 <h3 className="font-bold">{imc.title}</h3>
@@ -59,11 +59,11 @@ const ImcCalc = () => {
 
       {imc && (
         <div className="col-span-1 md:col-span-2">
-          <div className="grid grid-cols-1 gap-4">
+          <div className="grid grid-cols-1 gap-4 h-full">
             {(() => {
               const status = getImcStatus(imc);
               return (
-                <div className={`${status.color} border border-gray-100 rounded-lg p-6 text-center`}>
+                <div className={`${status.color} border border-gray-100 rounded-lg p-6 text-center flex flex-col items-center justify-center`}>
                   <h3 className="text-xl font-bold">{status.label}</h3>
                   <p className="mt-2">IMC: {imc.toFixed(2)}</p>
                   <p className="mt-1 text-sm">Faixa: {status.range}</p>
