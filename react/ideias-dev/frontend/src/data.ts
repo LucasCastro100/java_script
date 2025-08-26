@@ -8,6 +8,14 @@ export const data = {
             tags: ["react", "typescript", "nextjs", "tailwindcss"],
             url: "/projetos/imc"
         },
+        {
+            name: "Calculadora",
+            description: "Uma calculadora simples para ralziar calculos básicos.",
+            slug: "calculadora",
+            // image: "/images/projects/imc.png",
+            tags: ["react", "typescript", "nextjs", "tailwindcss"],
+            url: "/projetos/calculadora"
+        },
     ],
     menuHeader: [
         { label: "Home", href: "/" },

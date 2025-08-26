@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  title: "Minha Página - Open Graph",
+  description: "Descrição para redes sociais",
   openGraph: {
     title: "Minha Página - Open Graph",
     description: "Descrição para redes sociais",
