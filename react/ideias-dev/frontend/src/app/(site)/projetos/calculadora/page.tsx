@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Calculadora from "./Calculadora";
+import { TitlePage } from "@/components/site/globals/titlePage";
 
 export const metadata: Metadata = {
   title: "Minha Página",
@@ -12,9 +13,12 @@ export const metadata: Metadata = {
 
 const Page = () => {
   return (
-    <div className="mt-8">
-      <h2 className="font-bold text-2xl mb-4">Calculadora</h2>
-      <Calculadora />
+    <div className="">
+      <TitlePage title="Projeto Calculadora" />
+
+      <div className="w-full max-w-6xl mx-auto">
+        <Calculadora />
+      </div>
     </div>
   );
 }

@@ -11,10 +11,8 @@ const SiteLayout = ({ children }: SiteLayoutProps) => {
       <body className="min-h-screen flex flex-col">
         <Header />
 
-        <main className="flex-1 p-4 bg-gray-50">
-          <div className="w-full max-w-6xl mx-auto">
-            {children}
-          </div>
+        <main className="flex-1 bg-gray-50">          
+            {children}          
         </main>
 
         <Footer />

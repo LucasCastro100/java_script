@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import ImcCalc from "./ImcCalc";
+import { TitlePage } from "@/components/site/globals/titlePage";
 
 export const metadata: Metadata = {
   title: "Minha Página",
@@ -12,9 +13,12 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <div className="mt-8">
-      <h2 className="font-bold text-2xl mb-4">Calculadora de IMC</h2>
-      <ImcCalc />
-    </div>
+    <div className="">
+      <TitlePage title="Projeto IMC" />
+
+      <div className="w-full max-w-6xl mx-auto">
+        <ImcCalc />
+      </div>
+    </div>    
   );
 }

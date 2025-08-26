@@ -19,8 +19,7 @@ export const data = {
     ],
     menuHeader: [
         { label: "Home", href: "/" },
-        { label: "Projetos", href: "/projetos" },
-        { label: "Sobre", href: "/sobre" },
+        { label: "Projetos", href: "/projetos" },        
         { label: "Contato", href: "/contato" },
     ],
     imcCategories: [

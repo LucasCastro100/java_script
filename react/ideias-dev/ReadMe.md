@@ -1,4 +1,5 @@
 # FRONTEND
+## npm install react-icons --save
 
 # BACKEND
 ## npm init -y

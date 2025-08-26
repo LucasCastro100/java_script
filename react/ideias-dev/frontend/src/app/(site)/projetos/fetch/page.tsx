@@ -1,3 +1,4 @@
+import { TitlePage } from "@/components/site/globals/titlePage";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -12,7 +13,11 @@ export const metadata: Metadata = {
 const Page = () => {
   return (
     <div className="">
-      <p className="">Fetch</p>
+      <TitlePage title="Projeto API" />
+
+      <div className="w-full max-w-6xl mx-auto">
+        
+      </div>
     </div>
   );
 }
