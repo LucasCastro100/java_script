@@ -5,13 +5,19 @@ import { useEffect, useState } from "react";
 import { FaPlus, FaMinus, FaTimes, FaDivide, FaEquals } from "react-icons/fa";
 
 const Calculadora = () => {
+    const getRandom = (range: number) => Math.floor(Math.random() * range) + 1;
+
+    const [isLoading, setIsLoading] = useState(false);
+    const [number1, setNumber1] = useState<number>(() => getRandom(10));
+    const [number2, setNumber2] = useState<number>(() => getRandom(10));
     const [rangeNumber, setRangeNumber] = useState<number>(10);
-    const [number1, setNumber1] = useState<number | null>(0);
-    const [number2, setNumber2] = useState<number | null>(0);
-    const [result, setResult] = useState<number | null>(null);
-    const [operation, setOperation] = useState<string | null>('+');
+    const [result, setResult] = useState<number>(0);
+    const [operationalResponse, setOperationalResponse] = useState<number>(0);
+    const [operation, setOperation] = useState<string>('+');
     const [acertos, setAcertos] = useState<number>(0);
     const [erros, setErros] = useState<number>(0);
+    const [feedback, setFeedback] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
+
 
     const getOperation = () => {
         switch (operation) {
@@ -29,22 +35,76 @@ const Calculadora = () => {
     }
 
     const generateNumbers = () => {
+        setIsLoading(true); // ativa o loading
+
         const num1 = Math.floor(Math.random() * rangeNumber) + 1;
         const num2 = Math.floor(Math.random() * rangeNumber) + 1;
-        setNumber1(num1);
-        setNumber2(num2);
+
+        setTimeout(() => {
+            setNumber1(num1);
+            setNumber2(num2);
+            setIsLoading(false); // desativa o loading
+        }, 200); // pequeno delay pra mostrar o loading
+    };
+
+
+    const resultOperation = () => {
+        let getResult;
+
+        switch (operation) {
+            case "+":
+                getResult = number1 + number2;
+                break;
+            case "-":
+                getResult = number1 - number2;
+                break;
+            case "*":
+                getResult = number1 * number2;
+                break;
+            case "/":
+                getResult = number1 / number2;
+                break;
+            default:
+                getResult = 0;
+        }
+
+        setOperationalResponse(getResult);
     };
 
     const checkResult = () => {
-        // console.log(`${number1} ${operation} ${number2} = ${result}`);
-    }
+        resultOperation();
+
+        if (operationalResponse === result) {
+            setAcertos(prev => prev + 1);
+            setFeedback({ message: 'Resposta correta!', type: 'success' });
+            generateNumbers();
+            setResult(0);
+        } else {
+            setErros(prev => prev + 1);
+            setFeedback({ message: 'Resposta errada!', type: 'error' });
+        }
+
+        // Faz a mensagem desaparecer após 2 segundos
+        setTimeout(() => setFeedback(null), 2000);
+    };
+
 
     useEffect(() => {
-        generateNumbers();
-    }, [rangeNumber]);
+        if (number1 !== 0 && number2 !== 0) {
+            resultOperation();
+        }
+    }, [number1, number2]);
 
     return (
         <div className="">
+            {isLoading && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                    <div className="text-white text-2xl font-bold animate-pulse">
+                        Carregando...
+                    </div>
+                </div>
+            )}
+
             <div className="flex flex-row gap-4 items-center justify-center">
                 <p className="font-bold text-xl">Acertos: {acertos}</p>
                 <p className="font-bold text-xl">-</p>
@@ -109,7 +169,7 @@ const Calculadora = () => {
                     </div>
 
                     <div className="">
-                        <input type="number" className="border border-gray-200 rounded-xl p-4 text-center font-bold text-xl lg:text-2xl w-full" onChange={(e) => setResult(Number(e.target.value))} />
+                        <input type="number" className="border border-gray-200 rounded-xl p-4 text-center font-bold text-xl lg:text-2xl w-full" value={result ?? 0} onChange={(e) => setResult(Number(e.target.value))} />
                     </div>
                 </div>
             </div>
@@ -123,6 +183,12 @@ const Calculadora = () => {
                     <p className="font-bold text-1xl">Verificar</p>
                 </ButtonCard>
             </div>
+
+            {feedback && (
+                <div className={`mt-4 text-center font-bold px-4 py-2 rounded-xl ${feedback.type === 'success' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'}`}>
+                    {feedback.message}
+                </div>
+            )}
         </div>
     );
 }
