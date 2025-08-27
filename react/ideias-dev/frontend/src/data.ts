@@ -19,7 +19,7 @@ export const data = {
     ],
     menuHeader: [
         { label: "Home", href: "/" },
-        { label: "Projetos", href: "/projetos" },        
+        { label: "Projetos", href: "/projetos" },
         { label: "Contato", href: "/contato" },
     ],
     imcCategories: [
@@ -29,5 +29,11 @@ export const data = {
         { title: "Obesidade grau I", range: "30 - 34,9", color: "bg-orange-500" },
         { title: "Obesidade grau II", range: "35 - 39,9", color: "bg-orange-700" },
         { title: "Obesidade Mórbida", range: "≥ 40", color: "bg-red-500" },
+    ],
+    storeBanners: [
+        { img: '/assets/banners/banner-1.png', href: '/products' },
+        { img: '/assets/banners/banner-2.png', href: '/products' },
+        { img: '/assets/banners/banner-3.png', href: '/products' },
+        { img: '/assets/banners/banner-4.png', href: '/products' },
     ]
 }
