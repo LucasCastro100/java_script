@@ -81,13 +81,12 @@ const Calculadora = () => {
             setResult(0);
         } else {
             setErros(prev => prev + 1);
-            setFeedback({ message: 'Resposta errada!', type: 'error' });
+            setFeedback({ message: 'Resposta errada... Tente outra vez!', type: 'error' });
         }
 
         // Faz a mensagem desaparecer após 2 segundos
         setTimeout(() => setFeedback(null), 2000);
     };
-
 
     useEffect(() => {
         if (number1 !== 0 && number2 !== 0) {
