@@ -5,7 +5,7 @@ export const data = {
             description: "Uma calculadora simples para calcular o Índice de Massa Corporal (IMC).",
             slug: "IMC",
             // image: "/images/projects/imc.png",
-            tags: ["react", "typescript", "nextjs", "tailwindcss"],
+            tags: ["react", "typescript", "tailwindcss"],
             url: "/projetos/imc"
         },
         {
@@ -13,8 +13,16 @@ export const data = {
             description: "Uma calculadora simples para ralziar calculos básicos.",
             slug: "calculadora",
             // image: "/images/projects/imc.png",
-            tags: ["react", "typescript", "nextjs", "tailwindcss"],
+            tags: ["react", "typescript", "tailwindcss"],
             url: "/projetos/calculadora"
+        },
+         {
+            name: "E-comerce",
+            description: "E-commerce com pagamento com STRIPE e frete com CORREIOS",
+            slug: "ecomerce",
+            // image: "/images/projects/imc.png",
+            tags: ["react", "typescript", "nextjs", "tailwindcss"],
+            url: "/projetos/loja"
         },
     ],
     menuHeader: [

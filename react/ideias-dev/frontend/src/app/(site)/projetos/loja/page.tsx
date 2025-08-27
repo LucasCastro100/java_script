@@ -1,7 +1,7 @@
 
-import Banners from "@/components/site/store/home/banners";
-import BenefitCard from "@/components/site/store/home/benefitCard";
-import ProductListSkeleton from "@/components/site/store/home/product-list-skeleton";
+import Banners from "@/components/site/loja/home/banners";
+import BenefitCard from "@/components/site/loja/home/benefitCard";
+import ProductListSkeleton from "@/components/site/loja/home/product-list-skeleton";
 import { data } from "@/data";
 import type { Metadata } from "next";
 import Image from "next/image";
