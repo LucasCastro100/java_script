@@ -33,12 +33,10 @@ type RootLayoutProps = Readonly<{
 const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <html lang="pt-br">
-          <body className="min-h-screen flex flex-col">    
-            <main className="flex-1 bg-gray-50">          
-                {children}          
-            </main>
-          </body>
-        </html>
+      <body className="min-h-screen flex flex-col">
+        {children}
+      </body>
+    </html>
   );
 };
 

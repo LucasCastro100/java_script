@@ -19,10 +19,6 @@ const Header = () => {
 
     return (
         <header className="bg-white border-b border-gray-200">
-            <div className="bg-black text-white text-center p-5">
-                <strong>FRETE GRÁTIS</strong> para todo o Brasil nas compras acima de R$ 00,00. <strong> APROVEITA!</strong>
-            </div>
-
             <div className="w-full max-w-6xl mx-auto p-5">
                 <div className="flex items-center justidy-center gap-4">
                     <div className="">
@@ -41,8 +37,8 @@ const Header = () => {
                             <div className="flex-1">
                                 <ul className="flex h-full items-center justify-center gap-4">
                                     {menu.map((item) => (
-                                        <li>
-                                            <Link key={item.label} href={item.href}>
+                                        <li key={item.label}>
+                                            <Link href={item.href}>
                                                 <div className="font-medium text-lg text-gray-500">{item.label}</div>
                                             </Link>
                                         </li>
@@ -52,7 +48,7 @@ const Header = () => {
                             </div>
 
                             <div className="w-80">
-                                <HeaderSarch/>
+                                <HeaderSarch />
                             </div>
                         </div>
                     </div>
@@ -75,24 +71,30 @@ const Header = () => {
                 </div>
             </div>
 
-            {menuOpened &&
+            {menuOpened && (
                 <div className="lg:hidden pb-5">
-                    {menu.map((item) => (
-                        <Link key={item.label} href={item.href}>
-                            <div className="p-5 border-b border-gray-200 flex justify-between items-center">
-                                <div className="font-medium text-lg text-gray-500">{item.label}</div>
-
-                                <Image
-                                    src={"/assets/loja/ui/arrow-up-right.png"}
-                                    alt="Ir a categoria"
-                                    width={24}
-                                    height={24}
-                                />
-                            </div>
-                        </Link>
-                    ))}
+                    <ul>
+                        {menu.map((item) => (
+                            <li key={item.label}>
+                                <Link href={item.href}>
+                                    <div className="p-5 border-b border-gray-200 flex justify-between items-center">
+                                        <div className="font-medium text-lg text-gray-500">
+                                            {item.label}
+                                        </div>
+                                        
+                                        <Image
+                                            src="/assets/loja/ui/arrow-up-right.png"
+                                            alt="Ir a categoria"
+                                            width={24}
+                                            height={24}
+                                        />
+                                    </div>
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
-            }
+            )}
 
             <div className="p-5 pt-0 lg:hidden">
                 <HeaderSarch />

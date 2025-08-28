@@ -20,8 +20,8 @@ export const Header = () => {
                                 <div className="flex-1">
                                     <ul className="flex h-full items-center justify-center gap-4">
                                         {list.map((item) => (
-                                            <li>
-                                                <Link key={item.label} href={item.href}>
+                                            <li key={item.label}>
+                                                <Link href={item.href}>
                                                     <div className="font-semibold text-lg text-gray-500 hover:text-blue-400">{item.label}</div>
                                                 </Link>
                                             </li>

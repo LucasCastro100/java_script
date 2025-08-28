@@ -2,7 +2,7 @@ import { stackIcons } from "@/icons/stackIcons";
 
 export const StackList = ({ tags }: { tags: string[] }) => (
   <div>
-    <h4 className="text-sm font-semibold text-gray-700 mt-2 mb-4">Stacks usadas:</h4>
+    <h4 className="text-sm font-semibold text-gray-700 mt-4 mb-2">Stacks usadas:</h4>
     <div className="flex flex-wrap gap-8 justify-center">
       {tags.map(tag => {
         const stack = stackIcons[tag.toLowerCase()];
