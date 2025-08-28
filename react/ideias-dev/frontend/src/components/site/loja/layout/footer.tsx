@@ -52,14 +52,14 @@ const Footer = () => {
                             ))}
                         </ul>
                     </div>
-                    <div className="flex flex-col md:flex-row gap-4 py-6 border-b border-gray-700">
+                    <div className="flex flex-col sm:flex-row gap-4 py-6 border-b border-gray-700">
                         <div className="flex-1">
                             <h4 className="mb-6 text-center md:text-left">Precisa de ajuda?</h4>
-                            <div className="flex flex-col md:flex-row gap-6">
+                            <div className="flex flex-col md:flex-row sm:items-center sm:justify-center gap-6">
                                 <FooterButton
                                     href="mailto:"
                                     icon="/assets/loja/ui/mail-line.png"
-                                    label=""
+                                    label="Email de envio"
                                 />
                                 <FooterButton
                                     href=""
@@ -70,7 +70,7 @@ const Footer = () => {
                         </div>
                         <div className="">
                             <h4 className="mb-6 text-center md:text-left">Acompanhe nas redes sociais</h4>
-                            <div className="flex flex-row justify-between gap-4">
+                            <div className="flex flex-row justify-center items-center gap-4">
                                 <FooterButton
                                     href=""
                                     icon="/assets/loja/ui/instagram-line.png"
@@ -90,14 +90,14 @@ const Footer = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="flex flex-col md:flex-row justify-end items-center py-6">                        
+                    {/* <div className="flex flex-col md:flex-row justify-end items-center py-6">                        
                         <div className="flex justify-center">
                             <FooterButton
                                 href="/"
                                 icon="/assets/loja/ui/arrow-up-line.png"
                             />
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </footer>

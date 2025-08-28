@@ -9,8 +9,8 @@ type Props = {
 
 const FooterButton = ({ href, icon, label }: Props) => {
     return (
-        <Link href={href}>
-            <div className="flex items-center gap-4 border border-gray-700 rounded-sm p-4 hover:bg-gray-900">
+        <Link href={href} className="w-full">
+            <div className="flex items-center gap-4 border border-gray-700 rounded-sm p-4 hover:bg-gray-900 flex justify-center items-center">
                 <Image
                     src={icon}
                     alt=""
