@@ -1,6 +1,6 @@
 'use client';
 
-import { Banner } from "@/types/banners";
+import { Banner } from "@/types/lojaBanners";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -13,7 +13,7 @@ type Props = {
 let bannerTimer: NodeJS.Timeout;
 let bannerTime = 5000
 
-const Banners = ({ list }: Props) => {
+export const Banners = ({ list }: Props) => {
     const [currentImage, setCurrentImage] = useState(0);
 
     const nextImage = () => {
@@ -66,5 +66,3 @@ const Banners = ({ list }: Props) => {
         </div>
     );
 }
-
-export default Banners;

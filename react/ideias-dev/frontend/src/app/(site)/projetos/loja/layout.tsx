@@ -7,16 +7,14 @@ export default function SiteLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-br">
-      <body>
-        <Header />
+    <>
+      <Header />
 
-        <main className="w-full max-w-6xl mx-auto p-5">
-          {children}
-        </main>
+      <main className="flex-1 bg-gray-50">
+        {children}
+      </main>
 
-        <Footer />
-      </body>
-    </html>
+      <Footer />
+    </>
   );
 }

@@ -1,4 +1,4 @@
-const ProductListSkeleton = () => {
+export const ProductListSkeleton = () => {
     return (
         <div className="mt-8">
             <div className="bg-gray-200 rounded w-52 h-8 mb-4 mx-auto md:mx-0 animate-pulse"></div>
@@ -14,5 +14,3 @@ const ProductListSkeleton = () => {
 
     );
 }
-
-export default ProductListSkeleton;

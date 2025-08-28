@@ -12,7 +12,7 @@ const Footer = () => {
             <div className="bg-white border-t border-gray-200 px-6 py-14">
                 <div className="w-full max-w-6xl mx-auto p-6 flex flex-col md:flex-row items-center gap-4">
                     <Image
-                        src={'/assets/ui/mail-send-line.png'}
+                        src={'/assets/loja/ui/mail-send-line.png'}
                         alt=""
                         width={50}
                         height={50}
@@ -40,7 +40,7 @@ const Footer = () => {
                     <div className="flex flex-col md:flex-row justify-between items-center gap-4 py-6 border-b border-gray-700">
                         <Link href="/">
                             <Image
-                                src={'/assets/ui/logo-white.png'}
+                                src={'/assets/loja/ui/logo-white.png'}
                                 alt="B7Store"
                                 width={143}
                                 height={48}
@@ -58,12 +58,12 @@ const Footer = () => {
                             <div className="flex flex-col md:flex-row gap-6">
                                 <FooterButton
                                     href="mailto:"
-                                    icon="/assets/ui/mail-line.png"
+                                    icon="/assets/loja/ui/mail-line.png"
                                     label=""
                                 />
                                 <FooterButton
                                     href=""
-                                    icon="/assets/ui/phone-line.png"
+                                    icon="/assets/loja/ui/phone-line.png"
                                     label="(11) 99999-9999"
                                 />
                             </div>
@@ -73,19 +73,19 @@ const Footer = () => {
                             <div className="flex flex-row justify-between gap-4">
                                 <FooterButton
                                     href=""
-                                    icon="/assets/ui/instagram-line.png"
+                                    icon="/assets/loja/ui/instagram-line.png"
                                 />
                                 <FooterButton
                                     href=""
-                                    icon="/assets/ui/linkedin-line.png"
+                                    icon="/assets/loja/ui/linkedin-line.png"
                                 />
                                 <FooterButton
                                     href=""
-                                    icon="/assets/ui/facebook-line.png"
+                                    icon="/assets/loja/ui/facebook-line.png"
                                 />
                                 <FooterButton
                                     href=""
-                                    icon="/assets/ui/twitter-x-fill.png"
+                                    icon="/assets/loja/ui/twitter-x-fill.png"
                                 />
                             </div>
                         </div>
@@ -94,7 +94,7 @@ const Footer = () => {
                         <div className="flex justify-center">
                             <FooterButton
                                 href="/"
-                                icon="/assets/ui/arrow-up-line.png"
+                                icon="/assets/loja/ui/arrow-up-line.png"
                             />
                         </div>
                     </div>

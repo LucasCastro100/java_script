@@ -1,10 +1,10 @@
 
-import Banners from "@/components/site/loja/home/banners";
-import BenefitCard from "@/components/site/loja/home/benefitCard";
-import ProductListSkeleton from "@/components/site/loja/home/product-list-skeleton";
+import { TitlePage } from "@/components/site/globals/titlePage";
+import { Banners } from "@/components/site/loja/home/banners";
+import { BenefitCard } from "@/components/site/loja/home/benefitCard";
+import { ProductListSkeleton } from "@/components/site/loja/home/product-list-skeleton";
 import { data } from "@/data";
 import type { Metadata } from "next";
-import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "ideiasDev Store - Home",
@@ -15,33 +15,37 @@ export const metadata: Metadata = {
 const Page = () => {
   return (
     <div className="">
-      <Banners list={data.storeBanners} />
+      <TitlePage title="Projeto E-Comerce" />
 
-      <div className="mt-8 flex flex-col md:flex-row gap-4 md:gap-8">
-        <BenefitCard
-          icon="/assets/ui/truck-line.png"
-          alt="Frete grátis"
-          title="Frete Grátis"
-          description="Para todo o Brasil."
-        />
+      <div className="w-full max-w-6xl mx-auto p-4">
+        <Banners list={data.storeBanners} />
 
-        <BenefitCard        
-          icon="/assets/ui/discount-percent-line.png"
-          alt="Desconto"
-          title="Muitas ofertas"
-          description="Ofertas imbatíveis."
-        />
+        <div className="mt-8 flex flex-col md:flex-row gap-4 md:gap-8">
+          <BenefitCard
+            icon="/assets/loja/ui/truck-line.png"
+            alt="Frete grátis"
+            title="Frete Grátis"
+            description="Para todo o Brasil."
+          />
 
-        <BenefitCard
-          icon="/assets/ui/arrow-left-right-line.png"
-          alt="Troca fácil"
-          title="Troca fácil"
-          description="No período de 30 dias."
-        />
+          <BenefitCard
+            icon="/assets/loja/ui/discount-percent-line.png"
+            alt="Desconto"
+            title="Muitas ofertas"
+            description="Ofertas imbatíveis."
+          />
+
+          <BenefitCard
+            icon="/assets/loja/ui/arrow-left-right-line.png"
+            alt="Troca fácil"
+            title="Troca fácil"
+            description="No período de 30 dias."
+          />
+        </div>
+
+        <ProductListSkeleton />
+        <ProductListSkeleton />
       </div>
-
-      <ProductListSkeleton />
-      <ProductListSkeleton />
     </div>
   );
 }

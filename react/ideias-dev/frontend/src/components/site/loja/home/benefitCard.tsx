@@ -7,7 +7,7 @@ type Props = {
   description: string;
 };
 
-const BenefitCard = ({ icon, alt, title, description }: Props) => {
+export const BenefitCard = ({ icon, alt, title, description }: Props) => {
   return (
     <div className="flex flex-1 p-6 border border-gray-200 rounded-sm">
       <div className="w-16 pr-6 border-r border-gray-200 flex items-center justify-center">
@@ -21,5 +21,3 @@ const BenefitCard = ({ icon, alt, title, description }: Props) => {
     </div>
   );
 };
-
-export default BenefitCard;

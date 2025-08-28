@@ -7,17 +7,15 @@ type SiteLayoutProps = Readonly<{
 
 const SiteLayout = ({ children }: SiteLayoutProps) => {
   return (
-    <html lang="pt-br">
-      <body className="min-h-screen flex flex-col">
-        <Header />
+    <>
+      <Header />
 
-        <main className="flex-1 bg-gray-50">          
-            {children}          
-        </main>
+      <main className="flex-1 bg-gray-50">
+        {children}
+      </main>
 
-        <Footer />
-      </body>
-    </html>
+      <Footer />
+    </>
   );
 };
 

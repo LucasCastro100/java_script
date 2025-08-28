@@ -5,7 +5,7 @@ export const data = {
             description: "Uma calculadora simples para calcular o Índice de Massa Corporal (IMC).",
             slug: "IMC",
             // image: "/images/projects/imc.png",
-            tags: ["react", "typescript", "tailwindcss"],
+            tags: ["react", "typescript", "nextjs", "tailwindcss"],
             url: "/projetos/imc"
         },
         {
@@ -13,7 +13,7 @@ export const data = {
             description: "Uma calculadora simples para ralziar calculos básicos.",
             slug: "calculadora",
             // image: "/images/projects/imc.png",
-            tags: ["react", "typescript", "tailwindcss"],
+            tags: ["react", "typescript", "nextjs", "tailwindcss"],
             url: "/projetos/calculadora"
         },
          {
@@ -39,9 +39,9 @@ export const data = {
         { title: "Obesidade Mórbida", range: "≥ 40", color: "bg-red-500" },
     ],
     storeBanners: [
-        { img: '/assets/banners/banner-1.png', href: '/products' },
-        { img: '/assets/banners/banner-2.png', href: '/products' },
-        { img: '/assets/banners/banner-3.png', href: '/products' },
-        { img: '/assets/banners/banner-4.png', href: '/products' },
+        { img: '/assets/loja/banners/banner-1.png', href: '/products' },
+        { img: '/assets/loja/banners/banner-2.png', href: '/products' },
+        { img: '/assets/loja/banners/banner-3.png', href: '/products' },
+        { img: '/assets/loja/banners/banner-4.png', href: '/products' },
     ]
 }

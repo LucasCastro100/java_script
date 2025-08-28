@@ -28,7 +28,7 @@ const Header = () => {
                     <div className="">
                         <Link href={'/'}>
                             <Image
-                                src={"/assets/ui/logo-black.png"}
+                                src={"/assets/loja/ui/logo-black.png"}
                                 alt="LogoStore"
                                 width={120}
                                 height={40}
@@ -59,17 +59,17 @@ const Header = () => {
 
                     <div className="flex gap-4">
                         <Link href={'/my-orders'}>
-                            <HeaderIcon src="/assets/ui/user-line.png" alt="Perfil" />
+                            <HeaderIcon src="/assets/loja/ui/user-line.png" alt="Perfil" />
                         </Link>
 
                         <Link href={'/cart'}>
-                            <HeaderIcon src="/assets/ui/shopping-bag-4-line.png" alt="Carrinho" />
+                            <HeaderIcon src="/assets/loja/ui/shopping-bag-4-line.png" alt="Carrinho" />
                         </Link>
 
                         <div className="lg:hidden" onClick={() => setMenuOpened(!menuOpened)}>
-                            <HeaderIcon src="/assets/ui/menu-line.png" alt="Menu"
+                            <HeaderIcon src="/assets/loja/ui/menu-line.png" alt="Menu"
                                 selected={menuOpened}
-                                srcSelected="/assets/ui/menu-line-white.png" />
+                                srcSelected="/assets/loja/ui/menu-line-white.png" />
                         </div>
                     </div>
                 </div>
@@ -83,7 +83,7 @@ const Header = () => {
                                 <div className="font-medium text-lg text-gray-500">{item.label}</div>
 
                                 <Image
-                                    src={"/assets/ui/arrow-up-right.png"}
+                                    src={"/assets/loja/ui/arrow-up-right.png"}
                                     alt="Ir a categoria"
                                     width={24}
                                     height={24}
