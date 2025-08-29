@@ -9,10 +9,10 @@ import HeaderSarch from "./header-search";
 
 const Header = () => {
     const menu: Menuitem[] = [
-        { label: 'Camisas', href: '/categories/camisas' },
-        { label: 'Kits', href: '/categories/kits' },
-        { label: 'Acessórios', href: '/categories/acessorios' },
-        { label: 'Eletrônicos', href: '/categories/eletronicos' }
+        { label: 'Camisas', href: '/projetos/loja/categorias/camisas' },
+        { label: 'Kits', href: '/projetos/loja/categorias/kits' },
+        { label: 'Acessórios', href: '/projetos/loja/categorias/acessorios' },
+        { label: 'Eletrônicos', href: '/projetos/loja/categorias/eletronicos' }
     ]
 
     const [menuOpened, setMenuOpened] = useState(false);

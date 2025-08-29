@@ -1,6 +1,6 @@
 'use client';
 
-import { Banner } from "@/types/lojaBanners";
+import { Banner } from "@/types/loja/banners";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";

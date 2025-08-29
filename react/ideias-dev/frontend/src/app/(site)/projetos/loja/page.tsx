@@ -2,9 +2,12 @@
 import { TitlePage } from "@/components/site/globals/titlePage";
 import { Banners } from "@/components/site/loja/home/banners";
 import { BenefitCard } from "@/components/site/loja/home/benefitCard";
+import { MostSoldProducts } from "@/components/site/loja/home/most-sold-products";
+import { MostViewedProducts } from "@/components/site/loja/home/most-viewed-products";
 import { ProductListSkeleton } from "@/components/site/loja/home/product-list-skeleton";
 import { data } from "@/data";
 import type { Metadata } from "next";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "ideiasDev Store - Home",
@@ -43,8 +46,13 @@ const Page = () => {
           />
         </div>
 
-        <ProductListSkeleton />
-        <ProductListSkeleton />
+        <Suspense fallback={<ProductListSkeleton />}>
+          <MostViewedProducts />
+        </Suspense>
+
+        <Suspense fallback={<ProductListSkeleton />}>
+          <MostSoldProducts />
+        </Suspense>
       </div>
     </div>
   );

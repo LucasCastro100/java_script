@@ -6,10 +6,8 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-
-
+} from "@/components/site/apoia-dev/ui/table";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/site/apoia-dev/ui/card";
 
 const donations = [
   {

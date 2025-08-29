@@ -1,7 +1,7 @@
 
 import Link from "next/link"
 import { HandCoins, LogOut } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/site/apoia-dev//ui/button"
 import { MobileMenu } from "./menu-mobile"
 
 export function Header() {

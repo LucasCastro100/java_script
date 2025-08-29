@@ -1,8 +1,6 @@
 import { DonationTable } from "./_components/donates";
 import { Stats } from "./_components/analytics";
 
-
-
 export default async function Dashboard() {
 
   return (

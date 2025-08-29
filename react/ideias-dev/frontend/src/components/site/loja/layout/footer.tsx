@@ -4,8 +4,8 @@ import FooterButton from "./footer-button";
 
 const Footer = () => {
     const menu: Menuitem[] = [
-        { label: 'Camisas', href: '/categories/camisas' },
-        { label: 'Kits', href: '/categories/kits' }
+        { label: 'Camisas', href: '/projetos/loja/categorias/camisas' },
+        { label: 'Kits', href: '/projetos/loja/categorias/kits' }
     ];
     return (
         <footer>

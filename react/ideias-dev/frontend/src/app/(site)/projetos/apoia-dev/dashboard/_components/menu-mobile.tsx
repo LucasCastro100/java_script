@@ -3,9 +3,9 @@
 import { useState } from "react"
 import Link from "next/link"
 import { Menu, LogOut } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { DialogTitle } from "@/components/ui/dialog"
+import { Button } from "@/components/site/apoia-dev/ui/button"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/site/apoia-dev/ui/sheet"
+import { DialogTitle } from "@/components/site/apoia-dev/ui/dialog"
 
 export function MobileMenu() {
   const [open, setOpen] = useState(false)
