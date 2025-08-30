@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   keywords: ["Next.js", "React", "Tailwind"],
 }
 
-const Page = () => {
+export default function Page() {
   return (
     <div className="">
       <div className="w-full max-w-6xl mx-auto p-4">
@@ -18,5 +18,3 @@ const Page = () => {
     </div>
   );
 }
-
-export default Page;

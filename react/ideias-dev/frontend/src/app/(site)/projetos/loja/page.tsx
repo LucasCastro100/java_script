@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   authors: [{ name: "ideiasDev", url: "https://ideias.dev.br" }],
 };
 
-const Page = () => {
+export default function Page() {
   return (
     <div className="">
       <TitlePage title="Projeto E-Comerce" />
@@ -57,5 +57,3 @@ const Page = () => {
     </div>
   );
 }
-
-export default Page;

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   keywords: ["Next.js", "React", "Tailwind"],
 }
 
-const Page = () => {
+export default function Page() {
   return (
     <div className="">
       <TitlePage title="Projeto Calculadora" />
@@ -22,5 +22,3 @@ const Page = () => {
     </div>
   );
 }
-
-export default Page;

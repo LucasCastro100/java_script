@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   keywords: ["Next.js", "React", "Tailwind"],
 }
 
-const Page = () => {
+export default function Page() {
   const list: Project[] = data.projects;
 
   return (
@@ -45,5 +45,3 @@ const Page = () => {
     </div>
   );
 }
-
-export default Page;

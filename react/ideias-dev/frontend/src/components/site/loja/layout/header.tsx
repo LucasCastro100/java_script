@@ -22,7 +22,7 @@ const Header = () => {
             <div className="w-full max-w-6xl mx-auto p-5">
                 <div className="flex items-center justidy-center gap-4">
                     <div className="">
-                        <Link href={'/'}>
+                        <Link href={'/projetos/loja/'}>
                             <Image
                                 src={"/assets/loja/ui/logo-black.png"}
                                 alt="LogoStore"
