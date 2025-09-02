@@ -16,7 +16,7 @@ export const ProductItem = ({ data }: Props) => {
         setLiked(!liked);
     }
 
-    const link = `/projetos/loja/categorias/${data.id}`
+    const link = `/projetos/loja/produto/${data.id}`
     return (
         <div className="bg-white border border-gray-200 rounded-md p-4 flex flex-col gap-2">
             <div className="flex items-center justify-end">
