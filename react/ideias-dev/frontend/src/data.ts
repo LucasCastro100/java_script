@@ -66,5 +66,17 @@ export const data = {
         { id: 7, label: "Camiseta Node Verde", image: "/assets/loja/products/camiseta-node.png", price: 59.9, liked: false, views: 75, solds: 20 },
         { id: 8, label: "Camiseta React Preta", image: "/assets/loja/products/camiseta-react-preta.png", price: 69.9, liked: true, views: 180, solds: 55 },
         { id: 9, label: "Camiseta React Azul", image: "/assets/loja/products/camiseta-react-azul.png", price: 69.9, liked: false, views: 140, solds: 60 },
-    ]
+    ],
+
+    product: {
+        id: 1,
+        label: "Camiseta PHP",
+        images: [
+            "/assets/loja/products/camiseta-php.png",
+            "/assets/loja/products/camiseta-laravel-azul.png"
+        ],
+        price: 79.9,
+        liked: false,
+        description: "Camiseta oficial do framework Laravel, feita de algodão 100% puro, proporcionando conforto e estilo para os desenvolvedores que amam essa poderosa ferramenta de desenvolvimento web."
+    }
 }
