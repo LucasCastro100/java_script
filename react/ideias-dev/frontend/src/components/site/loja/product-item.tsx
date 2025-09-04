@@ -42,7 +42,7 @@ export const ProductItem = ({ data }: Props) => {
 
             <div className="">
                 <Link href={link} className="flex items-center justify-center">
-                    <Image src={data.image} alt={data.label} width={200} height={200} className="max-w-full h-48" />
+                    <Image src={data.images[0]} alt={data.label} width={200} height={200} className="max-w-full h-48" />
                 </Link>
             </div>
 

@@ -1,3 +1,5 @@
+import { Description } from "@radix-ui/react-dialog";
+
 export const data = {
     projects: [
         {
@@ -57,26 +59,22 @@ export const data = {
     ],
 
     products: [
-        { id: 1, label: "Camiseta Laravel Azul", image: "/assets/loja/products/camiseta-laravel-azul.png", price: 79.9, liked: false, views: 120, solds: 35 },
-        { id: 2, label: "Camiseta Laravel Branca", image: "/assets/loja/products/camiseta-laravel-branca.png", price: 79.9, liked: false, views: 95, solds: 40 },
-        { id: 3, label: "Camiseta JavaScript Amarela", image: "/assets/loja/products/camiseta-js.png", price: 69.9, liked: true, views: 200, solds: 50 },
-        { id: 4, label: "Camiseta HTML5 Laranja", image: "/assets/loja/products/camiseta-html.png", price: 59.9, liked: false, views: 80, solds: 25 },
-        { id: 5, label: "Camiseta CSS3 Azul", image: "/assets/loja/products/camiseta-css.png", price: 59.9, liked: false, views: 60, solds: 30 },
-        { id: 6, label: "Camiseta Node Preta", image: "/assets/loja/products/camiseta-node-preta.png", price: 59.9, liked: false, views: 110, solds: 45 },
-        { id: 7, label: "Camiseta Node Verde", image: "/assets/loja/products/camiseta-node.png", price: 59.9, liked: false, views: 75, solds: 20 },
-        { id: 8, label: "Camiseta React Preta", image: "/assets/loja/products/camiseta-react-preta.png", price: 69.9, liked: true, views: 180, solds: 55 },
-        { id: 9, label: "Camiseta React Azul", image: "/assets/loja/products/camiseta-react-azul.png", price: 69.9, liked: false, views: 140, solds: 60 },
-    ],
+        { id: 1, label: "Camiseta Laravel Azul", images: ["/assets/loja/products/camiseta-laravel-azul.png"], price: 79.9, liked: false, views: 120, solds: 35, description: "Camiseta" },
 
-    product: {
-        id: 1,
-        label: "Camiseta PHP",
-        images: [
-            "/assets/loja/products/camiseta-php.png",
-            "/assets/loja/products/camiseta-laravel-azul.png"
-        ],
-        price: 79.9,
-        liked: false,
-        description: "Camiseta oficial do framework Laravel, feita de algodão 100% puro, proporcionando conforto e estilo para os desenvolvedores que amam essa poderosa ferramenta de desenvolvimento web."
-    }
+        { id: 2, label: "Camiseta Laravel Branca", images: ["/assets/loja/products/camiseta-laravel-branca.png", "/assets/loja/products/camiseta-laravel-cinza.png"], price: 79.9, liked: false, views: 95, solds: 40, description: "Camiseta" },
+
+        { id: 3, label: "Camiseta JavaScript Amarela", images: ["/assets/loja/products/camiseta-js.png"], price: 69.9, liked: true, views: 200, solds: 50, description: "Camiseta" },
+
+        { id: 4, label: "Camiseta HTML5 Laranja", images: ["/assets/loja/products/camiseta-html.png"], price: 59.9, liked: false, views: 80, solds: 25, description: "Camiseta" },
+
+        { id: 5, label: "Camiseta CSS3 Azul", images: ["/assets/loja/products/camiseta-css.png"], price: 59.9, liked: false, views: 60, solds: 30, description: "Camiseta" },
+
+        { id: 6, label: "Camiseta Node Preta", images: ["/assets/loja/products/camiseta-node-preta.png"], price: 59.9, liked: false, views: 110, solds: 45, description: "Camiseta" },
+
+        { id: 7, label: "Camiseta Node Verde", images: ["/assets/loja/products/camiseta-node.png"], price: 59.9, liked: false, views: 75, solds: 20, description: "Camiseta" },
+
+        { id: 8, label: "Camiseta React Preta", images: ["/assets/loja/products/camiseta-react-preta.png"], price: 69.9, liked: true, views: 180, solds: 55, description: "Camiseta" },
+        
+        { id: 9, label: "Camiseta React Azul", images: ["/assets/loja/products/camiseta-react-azul.png"], price: 69.9, liked: false, views: 140, solds: 60, description: "Camiseta" },
+    ],
 }

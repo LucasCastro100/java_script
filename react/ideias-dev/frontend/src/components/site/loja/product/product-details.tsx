@@ -1,14 +1,15 @@
 'use client'
 
-import { ProductComplete } from "@/types/loja/product";
+import { Product } from "@/types/loja/product";
 
 type Props = {
-    product: ProductComplete;
+    product: Product;
 }
 export const ProductDetails = ({product}: Props) => {
     return (
-        <div className="">
-            ...
+        <div className="mt-8 md:mt-0">            
+            <h1 className="text-2xl font-bold mb-4">{product.label}</h1>            
+            <p className="text-lg font-semibold text-green-600">${product.price.toFixed(2)}</p>
         </div>
     );
 }
