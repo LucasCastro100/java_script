@@ -1,10 +1,9 @@
+
 import { ProductList } from "../product-list"
-import { data } from "@/data"
+import { useMostViewedProducts } from "@/hooks/loja/use-most-viewed-products";
 
 export const MostViewedProducts = () => {
-    const mostViewed = [...data.products]
-        .sort((a, b) => b.views - a.views)
-        .slice(0, 4); // pega os 4 primeiros
+    const mostViewed = useMostViewedProducts(4);
 
     return (
         <div className="mt-8">

@@ -1,4 +1,4 @@
-type Menuitem = {
+type MenuItem = {
     label: string;
     href: string;
 }

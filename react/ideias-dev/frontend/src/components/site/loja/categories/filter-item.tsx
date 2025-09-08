@@ -1,6 +1,6 @@
 'use client';
 
-import { UseQueryString } from "@/hooks/use-qerySring";
+import { UseQueryString } from "@/hooks/loja/use-qerySring";
 import { use } from "react";
 
 type Props = {

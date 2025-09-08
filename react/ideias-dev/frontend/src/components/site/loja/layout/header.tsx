@@ -8,7 +8,7 @@ import HeaderSarch from "./header-search";
 
 
 const Header = () => {
-    const menu: Menuitem[] = [
+    const menu: MenuItem[] = [
         { label: 'Camisas', href: '/projetos/loja/categorias/camisas' },
         { label: 'Kits', href: '/projetos/loja/categorias/kits' },
         { label: 'Acessórios', href: '/projetos/loja/categorias/acessorios' },

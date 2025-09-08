@@ -2,8 +2,11 @@ import { TitlePage } from "@/components/site/globals/titlePage";
 import { ImageSlide } from "@/components/site/loja/product/image-slide";
 import { ProductDescription } from "@/components/site/loja/product/product-description";
 import { ProductDetails } from "@/components/site/loja/product/product-details";
+import { RelatedProducts } from "@/components/site/loja/product/related-products";
+import { RelatedProductSkeleton } from "@/components/site/loja/product/related-products-skeleton";
 import { data } from "@/data";
 import Link from "next/link";
+import { Suspense } from "react";
 
 type Props = {
     params: { id: string }; // ✅ tipado corretamente
@@ -43,10 +46,9 @@ export default function Page({ params }: Props) {
 
                     <ProductDescription description={product.description} />
 
-                    <div className="w-full mt-8">
-                        <h3 className="text-gray-700">Você também pode gostar: </h3>
-
-                    </div>
+                    <Suspense fallback={<RelatedProductSkeleton />}>
+                        <RelatedProducts id={product.id} />
+                    </Suspense>
                 </div>
             )}
         </div>

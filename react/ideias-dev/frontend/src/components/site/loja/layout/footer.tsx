@@ -3,7 +3,7 @@ import Link from "next/link";
 import FooterButton from "./footer-button";
 
 const Footer = () => {
-    const menu: Menuitem[] = [
+    const menu: MenuItem[] = [
         { label: 'Camisas', href: '/projetos/loja/categorias/camisas' },
         { label: 'Kits', href: '/projetos/loja/categorias/kits' }
     ];

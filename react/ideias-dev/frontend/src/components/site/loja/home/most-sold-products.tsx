@@ -1,10 +1,8 @@
+import { useMostSoldProducts } from "@/hooks/loja/use-most-sold-products"
 import { ProductList } from "../product-list"
-import { data } from "@/data"
 
 export const MostSoldProducts = () => {
-    const mostSold = [...data.products]
-        .sort((a, b) => b.solds - a.solds)
-        .slice(0, 4); // pega os 4 primeiros
+    const mostSold = useMostSoldProducts(4)
 
     return (
         <div className="mt-8">
