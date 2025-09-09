@@ -2,12 +2,20 @@ import { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Minha Página - Open Graph",
-  description: "Descrição para redes sociais",
+  title: {
+    default: "MeuSite",
+    template: "%s | MeuSite", // <-- isso gera títulos dinâmicos
+  },
+  description: "Descrição padrão do site",
+  authors: [
+    { name: "Lucas Oliveira", url: "https://meusite.com/autor/lucas" }
+  ],
+  keywords: ["Next.js", "React", "Tailwind"],
   openGraph: {
-    title: "Minha Página - Open Graph",
-    description: "Descrição para redes sociais",
+    title: "MeuSite",
+    description: "Descrição padrão para Open Graph",
     url: "https://meusite.com",
+    siteName: "MeuSite",
     images: [
       {
         url: "https://meusite.com/og-image.png",
@@ -16,12 +24,11 @@ export const metadata: Metadata = {
         alt: "Imagem OG",
       },
     ],
-    siteName: "MeuSite",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Minha Página - Twitter",
-    description: "Descrição do Twitter",
+    title: "MeuSite",
+    description: "Descrição padrão no Twitter",
     images: ["https://meusite.com/twitter-image.png"],
   },
 };

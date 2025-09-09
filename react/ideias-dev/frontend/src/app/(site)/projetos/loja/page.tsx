@@ -10,9 +10,12 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
-  title: "ideiasDev Store - Home",
-  description: "Home da ideiasDev Store, explore nossos produtos e aproveite a experiência de compra!",
-  authors: [{ name: "ideiasDev", url: "https://ideias.dev.br" }],
+  title: "Produto X - MeuSite",
+  description: "Página do Produto X",
+  openGraph: {
+    title: "Produto X - Open Graph",
+    description: "Detalhes do Produto X",
+  },
 };
 
 export default function Page() {
