@@ -25,4 +25,31 @@ export const useCartStore = create<CartState>((set) => ({
     shippingDays: 0,
     selectedAddressId: null,
 
-}))
+    addItem: ({productId, quantity}) => set(state => {
+        const existingItem = state.cart.find(item => item.productId === productId);
+        
+        if (existingItem) {
+            const newCart = state.cart.map(item => (item.productId === productId) ? {...item, quantity: item.quantity + quantity} : item)
+            return {cart: newCart};
+        } else {
+            return {cart: [...state.cart, {productId, quantity}]};
+        }
+    }),
+    removeItem: (productId) => set(state => {
+        const newCart = state.cart.filter(item => item.productId !== productId);
+        return {cart: newCart};
+    }),
+    updateQuantity: (productId, quantity) => set( state => {
+        const newCart = state.cart.map(item => (item.productId === productId) ? {...item, quantity} : item)
+
+        return {cart: newCart};
+    }),
+
+    setShippingZipCode: (zipCode) => set({shippingZipCode: zipCode}),
+    setShippingCost: (cost) => set({shippingCost: cost}),
+    setShippingDays: (days) => set({shippingDays: days}),
+    setSelectedAddressId: (id) => set({selectedAddressId: id}),
+
+    clearCart: () => set({cart: [],  shippingZipCode: '', shippingCost: 0, shippingDays: 0, selectedAddressId: null}),
+    clearShipping: () => set({ shippingZipCode: '', shippingCost: 0, shippingDays: 0, selectedAddressId: null})
+}));
