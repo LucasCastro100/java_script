@@ -1,4 +1,4 @@
-import { ButtonCardCalc } from "@/types/buttonCardCalc";
+import { ButtonCardCalc } from "@/types/calculadora/buttonCardCalc";
 
 export function ButtonCard({ onClick, children, className, active = false }: ButtonCardCalc) {
   return (

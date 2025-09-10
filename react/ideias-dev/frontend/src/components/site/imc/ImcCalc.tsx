@@ -1,7 +1,7 @@
 'use client';
 
 import { data } from "@/data";
-import { ImcCategories } from "@/types/imcCategories";
+import { ImcCategories } from "@/types/calculadora/imcCategories";
 import { useState } from "react";
 
 const ImcCalc = () => {

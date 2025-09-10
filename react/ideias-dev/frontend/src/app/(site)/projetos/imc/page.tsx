@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import ImcCalc from "./ImcCalc";
+import ImcCalc from "../../../../components/site/imc/ImcCalc";
 import { TitlePage } from "@/components/site/globals/titlePage";
 
 export const metadata: Metadata = {

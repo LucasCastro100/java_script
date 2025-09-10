@@ -34,6 +34,22 @@ export const data = {
             tags: ["react", "typescript", "nextjs", "tailwindcss"],
             url: "/projetos/apoia-dev"
         },
+        {
+            name: "Lista de tarefas",
+            description: "Sistema de lista de tarefas, salvando em local storage",
+            slug: "",
+            // image: "/images/projects/imc.png",
+            tags: ["react", "typescript", "nextjs", "tailwindcss"],
+            url: "/projetos/lista-de-tarefas"
+        },
+        //  {
+        //     name: "",
+        //     description: "",
+        //     slug: "",
+        //     // image: "/images/projects/imc.png",
+        //     tags: ["react", "typescript", "nextjs", "tailwindcss"],
+        //     url: ""
+        // },
     ],
 
     menuHeader: [
@@ -74,7 +90,7 @@ export const data = {
         { id: 7, label: "Camiseta Node Verde", images: ["/assets/loja/products/camiseta-node.png"], price: 59.9, liked: false, views: 75, solds: 20, description: "Camiseta" },
 
         { id: 8, label: "Camiseta React Preta", images: ["/assets/loja/products/camiseta-react-preta.png"], price: 69.9, liked: true, views: 180, solds: 55, description: "Camiseta" },
-        
+
         { id: 9, label: "Camiseta React Azul", images: ["/assets/loja/products/camiseta-react-azul.png"], price: 69.9, liked: false, views: 140, solds: 60, description: "Camiseta" },
     ],
 }

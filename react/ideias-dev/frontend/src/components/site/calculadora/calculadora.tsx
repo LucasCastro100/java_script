@@ -1,6 +1,6 @@
 'use client';
 
-import { ButtonCard } from "@/components/site/buttonCardCalc";
+import { ButtonCard } from "@/components/site/calculadora/buttonCardCalc";
 import { useEffect, useState } from "react";
 import { FaPlus, FaMinus, FaTimes, FaDivide, FaEquals } from "react-icons/fa";
 
