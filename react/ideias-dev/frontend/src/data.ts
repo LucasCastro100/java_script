@@ -1,56 +1,54 @@
 import { Description } from "@radix-ui/react-dialog";
 
 export const data = {
-    projects: [
-        {
-            name: "Calculadora de IMC",
-            description: "Uma calculadora simples para calcular o Índice de Massa Corporal (IMC).",
-            slug: "IMC",
-            // image: "/images/projects/imc.png",
-            tags: ["react", "typescript", "nextjs", "tailwindcss"],
-            url: "/projetos/imc"
+    projects: {
+        basicos: {
+            stacks: ["react", "typescript", "nextjs", "tailwindcss"],
+            projetos: [
+                {
+                    name: "Calculadora de IMC",
+                    description: "Uma calculadora simples para calcular o Índice de Massa Corporal (IMC).",
+                    slug: "IMC",
+                    url: "/projetos/imc",
+                },
+                {
+                    name: "Calculadora",
+                    description: "Uma calculadora simples para realizar cálculos básicos.",
+                    slug: "calculadora",
+                    url: "/projetos/calculadora",
+                },
+                {
+                    name: "Lista de tarefas",
+                    description: "Sistema de lista de tarefas, salvando em local storage",
+                    slug: "lista-de-tarefas",
+                    url: "/projetos/lista-de-tarefas",
+                },
+            ],
         },
-        {
-            name: "Calculadora",
-            description: "Uma calculadora simples para ralziar calculos básicos.",
-            slug: "calculadora",
-            // image: "/images/projects/imc.png",
-            tags: ["react", "typescript", "nextjs", "tailwindcss"],
-            url: "/projetos/calculadora"
+
+        intermediario: {
+            stacks: ["react", "typescript", "nextjs", "tailwindcss"],
+            projetos: [], // vazio por enquanto
         },
-        {
-            name: "E-comerce",
-            description: "E-commerce com pagamento com STRIPE e frete com CORREIOS",
-            slug: "ecomerce",
-            // image: "/images/projects/imc.png",
-            tags: ["react", "typescript", "nextjs", "tailwindcss"],
-            url: "/projetos/loja"
+
+        avancado: {
+            stacks: ["react", "typescript", "nextjs", "tailwindcss"],
+            projetos: [
+                {
+                    name: "E-commerce",
+                    description: "E-commerce com pagamento com STRIPE e frete com CORREIOS",
+                    slug: "ecomerce",
+                    url: "/projetos/loja",
+                },
+                {
+                    name: "Apoia Dev",
+                    description: "Sistema com pagamentos recorrentes com STRIPE",
+                    slug: "apoia-dev",
+                    url: "/projetos/apoia-dev",
+                },
+            ],
         },
-        {
-            name: "Apoia Dev",
-            description: "Sistema com pagamentos recorrentes com STRIPE",
-            slug: "apoia-dev",
-            // image: "/images/projects/imc.png",
-            tags: ["react", "typescript", "nextjs", "tailwindcss"],
-            url: "/projetos/apoia-dev"
-        },
-        {
-            name: "Lista de tarefas",
-            description: "Sistema de lista de tarefas, salvando em local storage",
-            slug: "",
-            // image: "/images/projects/imc.png",
-            tags: ["react", "typescript", "nextjs", "tailwindcss"],
-            url: "/projetos/lista-de-tarefas"
-        },
-        //  {
-        //     name: "",
-        //     description: "",
-        //     slug: "",
-        //     // image: "/images/projects/imc.png",
-        //     tags: ["react", "typescript", "nextjs", "tailwindcss"],
-        //     url: ""
-        // },
-    ],
+    },
 
     menuHeader: [
         { label: "Home", href: "/" },
