@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { TitlePage } from "@/components/site/globals/titlePage";
-import { useParams } from "next/navigation";
+import EquipePage from "./equipe";
 
 export const metadata: Metadata = {
   title: "Produto X - MeuSite",
@@ -12,17 +12,13 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  const { escola_id, turma_id, equipe_id } = useParams();
-
   return (
     <div className="">
-      <TitlePage title="" />
+      <TitlePage title="Controle de Escolas" />
 
       <div className="w-full max-w-6xl mx-auto p-4">
-        <div className="">Escola: {escola_id}</div>
-        <div className="">Turma {turma_id}</div>
-        <div className="">Equipe {equipe_id}</div>
+         <EquipePage />
       </div>
-    </div>
+    </div>    
   );
 }
