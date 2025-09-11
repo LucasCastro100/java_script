@@ -25,13 +25,19 @@ export const data = {
         },
 
         intermediario: {
-            stacks: ["react", "typescript", "nextjs", "tailwindcss"],
+            stacks: ["react", "typescript", "nextjs", "tailwindcss", "storage"],
             projetos: [
                 {
                     name: "Fetch - API",
                     description: "Realizando bsucas em outro sistema por meio de api utiliando AXIOS.",
                     slug: "api",
                     url: "/projetos/fetch-api",
+                },
+                 {
+                    name: "Controle de Escolas",
+                    description: "Realizando cadastro de escolas, turmas, alunos e diviidndo os alunos em grupos e guardando essas informações com localStorage",
+                    slug: "api",
+                    url: "/projetos/controle-escolas",
                 },
             ],
         },
