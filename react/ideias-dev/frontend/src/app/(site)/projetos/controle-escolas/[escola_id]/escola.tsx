@@ -56,7 +56,7 @@ export default function EscolaPage() {
 
     const updated = schools.map((s) =>
       s.id === escola_id
-        ? { ...s, classes: [...(s.classes || []), newClass] } // ✅ Garante que classes nunca seja undefined
+        ? { ...s, classes: [...(s.classes || []), newClass] } // ✅
         : s
     );
 
