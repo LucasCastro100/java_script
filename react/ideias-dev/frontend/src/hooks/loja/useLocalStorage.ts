@@ -3,18 +3,16 @@
 import { useEffect, useState } from "react";
 
 export const useLocalStorage = <T,>(key: string, initialValue: T) => {
-  const [value, setValue] = useState<T>(initialValue);
-
-  useEffect(() => {
+  const [value, setValue] = useState<T>(() => {
+    if (typeof window === "undefined") return initialValue; // server-side safe
     try {
       const stored = localStorage.getItem(key);
-      if (stored) {
-        setValue(JSON.parse(stored));
-      }
+      return stored ? JSON.parse(stored) : initialValue;
     } catch (err) {
       console.error("Erro ao carregar localStorage:", err);
+      return initialValue;
     }
-  }, [key]);
+  });
 
   useEffect(() => {
     try {

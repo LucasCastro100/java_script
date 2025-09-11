@@ -17,8 +17,8 @@ export default function Page() {
       <TitlePage title="Controle de Escolas" />
 
       <div className="w-full max-w-6xl mx-auto p-4">
-         <EscolaPage />
+        <EscolaPage />
       </div>
-    </div>    
+    </div>
   );
 }

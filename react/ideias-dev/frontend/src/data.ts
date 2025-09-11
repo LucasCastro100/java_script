@@ -35,7 +35,7 @@ export const data = {
                 },
                  {
                     name: "Controle de Escolas",
-                    description: "Realizando cadastro de escolas, turmas, alunos e diviidndo os alunos em grupos e guardando essas informações com localStorage",
+                    description: "Realizando cadastro de escolas, turmas, alunos e dividindo os alunos em grupos e guardando essas informações com localStorage",
                     slug: "api",
                     url: "/projetos/controle-escolas",
                 },

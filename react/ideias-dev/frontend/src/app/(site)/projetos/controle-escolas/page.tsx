@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { TitlePage } from "@/components/site/globals/titlePage";
+import { AddSchool } from "./addSchool";
 
 export const metadata: Metadata = {
   title: "Produto X - MeuSite",
@@ -13,10 +14,11 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <div className="">
-      <TitlePage title="Controle de turmas" />
+      <TitlePage title="Controle de Escolas" />
 
       <div className="w-full max-w-6xl mx-auto p-4">
+        <AddSchool />
       </div>
-    </div>    
+    </div>
   );
 }

@@ -8,12 +8,10 @@ import { useRandomId } from "@/hooks/id-random";
 export const ToDoList = () => {
     const [nameTask, setNameTask] = useState<string>("")
     const [list, setList] = useState<Item[]>([])
-
-    const generateId = useRandomId()
     const addToList = () => {
         if (!nameTask.trim()) return;
 
-        setList((prevList) => [...prevList, { id: generateId(6), task: nameTask, isCompleted: false }])
+        setList((prevList) => [...prevList, { id: useRandomId(8), task: nameTask, isCompleted: false }])
         setNameTask("")
     }
 
