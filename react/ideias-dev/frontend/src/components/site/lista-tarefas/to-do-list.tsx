@@ -5,14 +5,11 @@ import { ListItem } from "./list-item";
 import { Item } from "@/types/lista-tarefas/item";
 import { FaPlus } from "react-icons/fa";
 import { useRandomId } from "@/hooks/id-random";
-
-
 export const ToDoList = () => {
     const [nameTask, setNameTask] = useState<string>("")
     const [list, setList] = useState<Item[]>([])
 
     const generateId = useRandomId()
-
     const addToList = () => {
         if (!nameTask.trim()) return;
 

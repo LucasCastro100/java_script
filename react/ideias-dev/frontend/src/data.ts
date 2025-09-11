@@ -1,5 +1,3 @@
-import { Description } from "@radix-ui/react-dialog";
-
 export const data = {
     projects: {
         basicos: {
@@ -8,7 +6,7 @@ export const data = {
                 {
                     name: "Calculadora de IMC",
                     description: "Uma calculadora simples para calcular o Índice de Massa Corporal (IMC).",
-                    slug: "IMC",
+                    slug: "imc",
                     url: "/projetos/imc",
                 },
                 {
@@ -28,7 +26,14 @@ export const data = {
 
         intermediario: {
             stacks: ["react", "typescript", "nextjs", "tailwindcss"],
-            projetos: [], // vazio por enquanto
+            projetos: [
+                {
+                    name: "Fetch - API",
+                    description: "Realizando bsucas em outro sistema por meio de api utiliando AXIOS.",
+                    slug: "api",
+                    url: "/projetos/fetch-api",
+                },
+            ],
         },
 
         avancado: {

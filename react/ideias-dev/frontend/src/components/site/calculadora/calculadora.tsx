@@ -18,7 +18,6 @@ const Calculadora = () => {
     const [erros, setErros] = useState<number>(0);
     const [feedback, setFeedback] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
 
-
     const getOperation = () => {
         switch (operation) {
             case "+":
