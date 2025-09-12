@@ -3,6 +3,7 @@
 ## Frontend
 - npm i zod zustand
 - npm install react-icons --save
+- npm install react-leaflet leaflet axios - para gerar o mapa
 
 ## Backend
 - npm init -y
