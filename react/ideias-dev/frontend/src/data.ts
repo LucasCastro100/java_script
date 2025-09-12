@@ -17,7 +17,7 @@ export const data = {
                 },
                 {
                     name: "Lista de tarefas",
-                    description: "Sistema de lista de tarefas, salvando em local storage",
+                    description: "Sistema de lista de tarefas.",
                     slug: "lista-de-tarefas",
                     url: "/projetos/lista-de-tarefas",
                 },
