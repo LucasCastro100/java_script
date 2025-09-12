@@ -39,11 +39,17 @@ export const data = {
                     slug: "api",
                     url: "/projetos/controle-escolas",
                 },
+                {
+                    name: "Ibge",
+                    description: "Mostra as regioes e mostra no mapa onde fica, filtrando por regiao, estado e municipio",
+                    slug: "ibge",
+                    url: "/projetos/ibge",
+                },
             ],
         },
 
         avancado: {
-            stacks: ["react", "typescript", "nextjs", "tailwindcss"],
+            stacks: ["react", "typescript", "nextjs", "tailwindcss", "mysql"],
             projetos: [
                 {
                     name: "E-commerce",
@@ -56,6 +62,12 @@ export const data = {
                     description: "Sistema com pagamentos recorrentes com STRIPE",
                     slug: "apoia-dev",
                     url: "/projetos/apoia-dev",
+                },
+                {
+                    name: "Plataforma de cursos",
+                    description: "Sistema com pagamentos recorrentes com STRIPE, controle de usuario, matricula, acesso entre professor e aluno, e banco de dados mysql",
+                    slug: "apoia-dev",
+                    url: "/projetos/plataforma-cursos",
                 },
             ],
         },
