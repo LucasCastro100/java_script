@@ -2,11 +2,11 @@
 
 import { Modal } from "@/components/site/modal";
 import { useLocalStorage } from "@/hooks/loja/useLocalStorage";
-import { School, Class } from "@/types/controle-escolas/school";
+import { School, Class, Lesson } from "@/types/controle-escolas/school";
 import { useParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import { useRandomId } from "@/hooks/id-random";
+
 
 export default function EscolaPage() {
   const { escola_id } = useParams();
@@ -51,13 +51,14 @@ export default function EscolaPage() {
 
     const newClass: Class = {
       id: useRandomId(6),
-      name: className.trim()
+      name: className.trim(),      
+      lessons: [],
     };
 
-    const updated = schools.map((s) =>
-      s.id === escola_id
-        ? { ...s, classes: [...(s.classes || []), newClass] } // ✅
-        : s
+    const updated = schools.map((school) =>
+      school.id === escola_id
+        ? { ...school, classes: [...(school.classes || []), newClass] }
+        : school
     );
 
     setSchools(updated);
@@ -75,44 +76,44 @@ export default function EscolaPage() {
         <p className="font-bold text-center text-red-700">Escola não encontrada.</p>
       ) : (
         <>
-          <div className="flex flex-col md:flex-row gap-4 items-center justify-end mb-6">
-            <button
-              onClick={() => {
-                setEditName(school.name);
-                setIsEditOpen(true);
-              }}
-              className="px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-700"
-            >
-              Editar Escola
-            </button>
+          <div className="flex flex-col md:flex-row gap-4 items-center justify-between mb-6">
+            <div className=" text-start font-bold text-xl text-black">
+              {school.name}
+            </div>
 
-            <button
-              onClick={() => setIsDeleteOpen(true)}
-              className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
-            >
-              Excluir Escola
-            </button>
+            <div className="flex flex-col md:flex-row gap-4 items-center">
+              <button
+                onClick={() => {
+                  setEditName(school.name);
+                  setIsEditOpen(true);
+                }}
+                className="px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-700"
+              >
+                Editar Escola
+              </button>
 
-            <button
-              onClick={() => setIsAddClassOpen(true)}
-              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-            >
-              Cadastrar Turma
-            </button>
+              <button
+                onClick={() => setIsDeleteOpen(true)}
+                className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+              >
+                Excluir Escola
+              </button>
+
+              <button
+                onClick={() => setIsAddClassOpen(true)}
+                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+              >
+                Cadastrar Turma
+              </button>
+            </div>
           </div>
-
-          <h2 className="text-2xl font-bold mb-4">Escola: {school.name}</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {school.classes && school.classes.length > 0 ? (
-              school.classes.map((cls) => (
-                <Link
-                  key={cls.id}
-                  href={`/projetos/controle-escolas/${school.id}/${cls.id}`}
-                  className="border rounded-lg p-4 shadow hover:shadow-lg transition block"
-                >
-                  <h3 className="font-bold text-lg">{cls.name}</h3>
-                </Link>
+              school.classes.map((classe) => (
+                <div key={classe.id} className="border rounded-lg p-4 shadow hover:shadow-lg transition block">
+                  <h3 className="font-bold text-lg">{classe.name}</h3>
+                </div>
               ))
             ) : (
               <p className="col-span-3 text-center text-gray-600 font-semibold">

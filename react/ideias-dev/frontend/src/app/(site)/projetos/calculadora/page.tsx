@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { TitlePage } from "@/components/site/globals/titlePage";
-import Calculadora from "@/components/site/calculadora/Calculadora";
+import Calculadora from "@/components/site/calculadora/calculadora";
+
 
 export const metadata: Metadata = {
   title: "Produto X - MeuSite",

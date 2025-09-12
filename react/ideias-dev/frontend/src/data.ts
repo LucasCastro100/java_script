@@ -64,7 +64,7 @@ export const data = {
     menuHeader: [
         { label: "Home", href: "/" },
         { label: "Projetos", href: "/projetos" },
-        { label: "Contato", href: "/contato" },
+        { label: "Contato", modal:true },
     ],
 
     imcCategories: [
