@@ -48,7 +48,7 @@ export const ContatoForm = () => {
       <div className="grid grid-cols-1 gap-4">
         {/* Nome */}
         <div className="">
-          <label htmlFor="name" className="block font-medium text-gray-700">
+          <label htmlFor="name" className="block font-medium text-black">
             Nome
           </label>
           <input
@@ -64,7 +64,7 @@ export const ContatoForm = () => {
 
         {/* Email */}
         <div className="">
-          <label htmlFor="email" className="block font-medium text-gray-700">
+          <label htmlFor="email" className="block font-medium text-black">
             Email
           </label>
           <input
@@ -80,7 +80,7 @@ export const ContatoForm = () => {
 
         {/* Telefone */}
         <div className="">
-          <label htmlFor="phone" className="block font-medium text-gray-700">
+          <label htmlFor="phone" className="block font-medium text-black">
             Telefone
           </label>
           <input
@@ -96,7 +96,7 @@ export const ContatoForm = () => {
 
         {/* Domínio */}
         <div className="">
-          <label htmlFor="domain" className="block font-medium text-gray-700">
+          <label htmlFor="domain" className="block font-medium text-black">
             Domínio (SIM ou NÃO)
           </label>
           <input
@@ -111,7 +111,7 @@ export const ContatoForm = () => {
 
         {/* URL */}
         <div className="">
-          <label htmlFor="urlDomain" className="block font-medium text-gray-700">
+          <label htmlFor="urlDomain" className="block font-medium text-black">
             URL
           </label>
           <input
@@ -126,7 +126,7 @@ export const ContatoForm = () => {
 
         {/* Descrição */}
         <div className="">
-          <label htmlFor="desc" className="block font-medium text-gray-700">
+          <label htmlFor="desc" className="block font-medium text-black">
             Descrição
           </label>
           <textarea
