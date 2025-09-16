@@ -40,10 +40,10 @@ export const data = {
                     url: "/projetos/controle-escolas",
                 },
                 {
-                    name: "Finanças Pessoais",
-                    description: "Realizando cadastro de escolas, turmas, alunos e dividindo os alunos em grupos e guardando essas informações com localStorage",
-                    slug: "finança-pessoal",
-                    url: "/projetos/financas-pessoais",
+                    name: "Controle de finanças",
+                    description: "Sistema simples apra controle de gasto mensal, podendo acessar meses anteriores e fazer lançamento em meses futuros",
+                    slug: "controle-de-financas",
+                    url: "/projetos/controle-financas",
                 },
                 {
                     name: "Ibge",
