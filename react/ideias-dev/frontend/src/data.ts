@@ -35,9 +35,15 @@ export const data = {
                 },
                  {
                     name: "Controle de Escolas",
-                    description: "Realizando cadastro de escolas, turmas, alunos e dividindo os alunos em grupos e guardando essas informações com localStorage",
-                    slug: "api",
+                    description: "Projeto pessoal onde usoos dados para anotar o que acontece em cada escola por onde passo, e aproveitar para treinar, programação",
+                    slug: "controle-escolas",
                     url: "/projetos/controle-escolas",
+                },
+                {
+                    name: "Finanças Pessoais",
+                    description: "Realizando cadastro de escolas, turmas, alunos e dividindo os alunos em grupos e guardando essas informações com localStorage",
+                    slug: "finança-pessoal",
+                    url: "/projetos/financas-pessoais",
                 },
                 {
                     name: "Ibge",
@@ -62,12 +68,6 @@ export const data = {
                     description: "Sistema com pagamentos recorrentes com STRIPE",
                     slug: "apoia-dev",
                     url: "/projetos/apoia-dev",
-                },
-                {
-                    name: "Plataforma de cursos",
-                    description: "Sistema com pagamentos recorrentes com STRIPE, controle de usuario, matricula, acesso entre professor e aluno, e banco de dados mysql",
-                    slug: "apoia-dev",
-                    url: "/projetos/plataforma-cursos",
                 },
             ],
         },
