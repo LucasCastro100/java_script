@@ -12,13 +12,11 @@ export const AddSchool = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [nameSchool, setNameSchool] = useState<string>("");
     const [schools, setSchools] = useLocalStorage<School[]>("schools", []);
-    const [loading, setLoading] = useState(true); // estado de carregando
+    const [loading, setLoading] = useState(true);
 
-    // Simula o carregamento inicial (por exemplo, leitura do localStorage)
     useEffect(() => {
-        const timer = setTimeout(() => setLoading(false), 200); // delay opcional
-        return () => clearTimeout(timer);
-    }, []);
+        setLoading(false)
+    }, [schools])
 
     const storageAdd = () => {
         if (!nameSchool.trim()) return;

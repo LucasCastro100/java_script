@@ -33,7 +33,7 @@ export const data = {
                     slug: "api",
                     url: "/projetos/fetch-api",
                 },
-                 {
+                {
                     name: "Controle de Escolas",
                     description: "Projeto pessoal onde usoos dados para anotar o que acontece em cada escola por onde passo, e aproveitar para treinar, programação",
                     slug: "controle-escolas",
@@ -76,7 +76,7 @@ export const data = {
     menuHeader: [
         { label: "Home", href: "/" },
         { label: "Projetos", href: "/projetos" },
-        { label: "Contato", modal:true },
+        { label: "Contato", modal: true },
     ],
 
     imcCategories: [
@@ -114,4 +114,10 @@ export const data = {
 
         { id: 9, label: "Camiseta React Azul", images: ["/assets/loja/products/camiseta-react-azul.png"], price: 69.9, liked: false, views: 140, solds: 60, description: "Camiseta" },
     ],
+
+    categoriesFinances: {
+        food: { id: 1, title: 'Alimentação', color: 'blue', expense: true },
+        rent: { id: 2, title: 'Aluguel', color: 'orange', expense: true },
+        salary: { id: 3, title: 'Salário', color: 'green', expense: true },
+    }
 }
