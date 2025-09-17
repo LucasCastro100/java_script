@@ -1,5 +1,5 @@
 "use client";
-import { UseQueryString } from "@/hooks/loja/use-qerySring";
+import { UseQueryString } from "@/hooks/loja/use-querySring";
 import { ChangeEvent, useState } from "react";
 import { FilterGroup } from "./filter-group";
 import { data } from "@/data";

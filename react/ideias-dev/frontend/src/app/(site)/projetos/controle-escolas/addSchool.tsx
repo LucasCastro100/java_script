@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Input } from "@/components/input";
 import { Modal } from "@/components/site/modal";
-import { useLocalStorage } from "@/hooks/loja/useLocalStorage";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { useRandomId } from "@/hooks/id-random";
 import { useState, useEffect } from "react";
 import { School } from "@/types/controle-escolas/school";

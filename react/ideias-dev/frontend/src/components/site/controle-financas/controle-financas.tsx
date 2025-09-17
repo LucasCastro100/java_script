@@ -1,19 +1,23 @@
 'use client'
 
 import { data } from "@/data";
-import { useLocalStorage } from "@/hooks/loja/useLocalStorage";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { Finance } from "@/types/controle-financas/finance";
 import { CategoriesFinances } from "@/types/controle-financas/categories";
 import { useEffect, useState } from "react";
+import { getCurrentMonth, filterFinancesByMonth } from '@/helpers/date-filter'
 
 export const ControlFinance = () => {
     const [categories, setCategories] = useState<CategoriesFinances>(data.categoriesFinances);
     const [loading, setLoading] = useState(true);
     const [finances, setFinances] = useLocalStorage<Finance[]>("finances", []);
+    const [filterFinances, setFilterFinances] = useState<Finance[]>([])
+    const [currentMonth, setCurrentMonth] = useState(getCurrentMonth())
 
     useEffect(() => {
         setLoading(false);
-    }, [finances]);
+        setFilterFinances(filterFinancesByMonth(finances, currentMonth))
+    }, [finances, currentMonth]);
 
     return (
         <>
@@ -28,7 +32,7 @@ export const ControlFinance = () => {
                     <div className="flex gap-4">
                         <div className="flex-1 flex flex-col gap-1">
                             <label htmlFor="">Data</label>
-                            <input type="date" name="" id="" className="border p-2 rounded"/>
+                            <input type="date" name="" id="" className="border p-2 rounded" />
                         </div>
 
                         <div className="flex-1 flex flex-col gap-1">
@@ -50,13 +54,13 @@ export const ControlFinance = () => {
                     </div>
 
                     <div>
-                        {finances.length === 0 ? (
+                        {filterFinances.length === 0 ? (
                             <p className="font-bold text-xl text-center text-red-700">
                                 Não há dados cadastrados.
                             </p>
                         ) : (
                             <div className="flex flex-col gap-2">
-                                {finances.map((item, index) => (
+                                {filterFinances.map((item, index) => (
                                     <div
                                         key={index}
                                         className="p-2 border rounded shadow-sm"

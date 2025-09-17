@@ -1,7 +1,7 @@
 'use client'
 
 import { Modal } from "@/components/site/modal";
-import { useLocalStorage } from "@/hooks/loja/useLocalStorage";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { School, Class, Lesson } from "@/types/controle-escolas/school";
 import { useParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
