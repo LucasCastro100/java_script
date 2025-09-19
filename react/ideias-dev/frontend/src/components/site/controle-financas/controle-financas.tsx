@@ -1,24 +1,57 @@
 'use client'
 
-import { data } from "@/data";
+import { useEffect, useState } from "react";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { Finance } from "@/types/controle-financas/finance";
-import { CategoriesFinances } from "@/types/controle-financas/categories";
-import { useEffect, useState } from "react";
+import { TableItens } from "./table-itens";
+import { InfoArea } from "./info-area";
+import { AddItens } from "./add-itens";
 import { getCurrentMonth, filterFinancesByMonth } from '@/helpers/date-filter'
+import { CategoriesFinances } from "@/types/controle-financas/categories";
+import { data } from "@/data";
 
 export const ControlFinance = () => {
-    const [categories, setCategories] = useState<CategoriesFinances>(data.categoriesFinances);
     const [loading, setLoading] = useState(true);
     const [finances, setFinances] = useLocalStorage<Finance[]>("finances", []);
+    const [categories, setCategories] = useState<CategoriesFinances>(data.categoriesFinances);
     const [filterFinances, setFilterFinances] = useState<Finance[]>([])
     const [currentMonth, setCurrentMonth] = useState(getCurrentMonth())
+    const [income, setIncome] = useState(0);
+    const [expense, setExpense] = useState(0);
+
+    const handleMontChange = (newMonth: string) => {
+        setCurrentMonth(newMonth)
+    }
+
+    const handleAddFinance = (item: Finance) => {
+        setFinances([...finances, item]);
+    }
 
     useEffect(() => {
         setLoading(false);
-        setFilterFinances(filterFinancesByMonth(finances, currentMonth))
+        
+        const filtered = filterFinancesByMonth(finances, currentMonth)            
+            .filter(f => data.categoriesFinances[f.category]);
+
+        setFilterFinances(filtered);
     }, [finances, currentMonth]);
 
+    useEffect(() => {
+        let newIncome = 0
+        let newExpense = 0
+
+        for (let i in filterFinances) {
+            if (categories[filterFinances[i].category].expense) {
+                newExpense += filterFinances[i].value
+            } else {
+                newIncome += filterFinances[i].value
+            }
+        }
+
+        setIncome(newIncome);
+        setExpense(newExpense);
+
+    }, [filterFinances]);
     return (
         <>
             {loading ? (
@@ -29,54 +62,15 @@ export const ControlFinance = () => {
                 </div>
             ) : (
                 <div className="flex flex-col gap-4">
-                    <div className="flex gap-4">
-                        <div className="flex-1 flex flex-col gap-1">
-                            <label htmlFor="">Data</label>
-                            <input type="date" name="" id="" className="border p-2 rounded" />
-                        </div>
+                    <InfoArea
+                        currentMonth={currentMonth}
+                        onMonthChange={handleMontChange}
+                        income={income}
+                        expense={expense} />
 
-                        <div className="flex-1 flex flex-col gap-1">
-                            <label htmlFor="">Categoria</label>
-                            <select className="border p-2 h-[100%] rounded">
-                                <option selected disabled>Selecione...</option>
-                                {Object.values(categories).map((categorie) => (
-                                    <option key={categorie.id} value={categorie.id}>
-                                        {categorie.title}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
+                    <AddItens onAdd={handleAddFinance} />
 
-                    </div>
-
-                    <div>
-                        {/* Bloco futuro */}
-                    </div>
-
-                    <div>
-                        {filterFinances.length === 0 ? (
-                            <p className="font-bold text-xl text-center text-red-700">
-                                Não há dados cadastrados.
-                            </p>
-                        ) : (
-                            <div className="flex flex-col gap-2">
-                                {filterFinances.map((item, index) => (
-                                    <div
-                                        key={index}
-                                        className="p-2 border rounded shadow-sm"
-                                    >
-                                        <p className="font-semibold">{item.title}</p>
-                                        <p className="text-gray-600">
-                                            R${" "}
-                                            {item.value.toLocaleString("pt-BR", {
-                                                minimumFractionDigits: 2,
-                                            })}
-                                        </p>
-                                    </div>
-                                ))}
-                            </div>
-                        )}
-                    </div>
+                    <TableItens list={filterFinances} />
                 </div>
             )}
         </>

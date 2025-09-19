@@ -117,7 +117,7 @@ export const data = {
 
     categoriesFinances: {
         food: { id: 1, title: 'Alimentação', color: 'blue', expense: true },
-        rent: { id: 2, title: 'Aluguel', color: 'orange', expense: true },
+        payable: { id: 2, title: 'Contas', color: 'orange', expense: true },
         salary: { id: 3, title: 'Salário', color: 'green', expense: true },
     }
 }
