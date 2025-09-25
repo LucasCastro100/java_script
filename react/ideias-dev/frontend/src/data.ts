@@ -5,73 +5,79 @@ export const data = {
             projetos: [
                 {
                     name: "Calculadora de IMC",
-                    description: "Uma calculadora simples para calcular o Índice de Massa Corporal (IMC).",
+                    description: "Aplicação que permite calcular o Índice de Massa Corporal (IMC) de forma prática, exibindo o resultado com base nos dados informados pelo usuário.",
                     slug: "imc",
                     url: "/projetos/imc",
                 },
                 {
                     name: "Calculadora",
-                    description: "Uma calculadora simples para realizar cálculos básicos.",
+                    description: "Ferramenta simples para realizar operações matemáticas básicas, com interface intuitiva e responsiva.",
                     slug: "calculadora",
                     url: "/projetos/calculadora",
                 },
                 {
                     name: "Lista de tarefas",
-                    description: "Sistema de lista de tarefas.",
+                    description: "Aplicação para organização pessoal, permitindo cadastrar, marcar como concluídas e excluir tarefas.",
                     slug: "lista-de-tarefas",
                     url: "/projetos/lista-de-tarefas",
                 },
             ],
         },
-
+    
         intermediario: {
             stacks: ["react", "typescript", "nextjs", "tailwindcss", "storage"],
             projetos: [
                 {
                     name: "Fetch - API",
-                    description: "Realizando bsucas em outro sistema por meio de api utiliando AXIOS.",
+                    description: "Projeto que consome dados de APIs externas utilizando Axios, exibindo informações de forma dinâmica e organizada.",
                     slug: "api",
                     url: "/projetos/fetch-api",
                 },
                 {
                     name: "Controle de Escolas",
-                    description: "Projeto pessoal onde usoos dados para anotar o que acontece em cada escola por onde passo, e aproveitar para treinar, programação",
+                    description: "Sistema para registrar e acompanhar atividades em diferentes escolas, servindo como ferramenta prática de gestão e também como estudo de programação.",
                     slug: "controle-escolas",
                     url: "/projetos/controle-escolas",
                 },
                 {
                     name: "Controle de finanças",
-                    description: "Sistema simples apra controle de gasto mensal, podendo acessar meses anteriores e fazer lançamento em meses futuros",
+                    description: "Aplicação para controle financeiro pessoal, permitindo registrar despesas e receitas, acompanhar meses anteriores e planejar lançamentos futuros.",
                     slug: "controle-de-financas",
                     url: "/projetos/controle-financas",
                 },
                 {
-                    name: "Ibge",
-                    description: "Mostra as regioes e mostra no mapa onde fica, filtrando por regiao, estado e municipio",
+                    name: "IBGE",
+                    description: "Sistema que consome a API do IBGE para exibir regiões, estados e municípios do Brasil, incluindo localização no mapa e filtros por hierarquia geográfica.",
                     slug: "ibge",
                     url: "/projetos/ibge",
                 },
+                {
+                    name: "Prime Flix",
+                    description: "Aplicação que lista filmes a partir de uma API externa, com detalhes sobre cada título, além de permitir salvar favoritos para assistir depois.",
+                    slug: "prime-flix",
+                    url: "/projetos/prime-flix",
+                },
             ],
         },
-
+    
         avancado: {
             stacks: ["react", "typescript", "nextjs", "tailwindcss", "mysql"],
             projetos: [
                 {
                     name: "E-commerce",
-                    description: "E-commerce com pagamento com STRIPE e frete com CORREIOS",
+                    description: "Plataforma de comércio eletrônico com integração ao Stripe para pagamentos e cálculo de frete automático via Correios.",
                     slug: "ecomerce",
                     url: "/projetos/loja",
                 },
                 {
                     name: "Apoia Dev",
-                    description: "Sistema com pagamentos recorrentes com STRIPE",
+                    description: "Sistema de apoio a desenvolvedores com assinatura recorrente, utilizando integração com o Stripe para gestão de pagamentos.",
                     slug: "apoia-dev",
                     url: "/projetos/apoia-dev",
                 },
             ],
         },
-    },
+    },    
 
     menuHeader: [
         { label: "Home", href: "/" },

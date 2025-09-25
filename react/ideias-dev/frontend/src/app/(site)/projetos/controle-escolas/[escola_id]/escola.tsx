@@ -2,7 +2,7 @@
 
 import { Modal } from "@/components/site/modal";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
-import { School, Class, Lesson } from "@/types/controle-escolas/school";
+import { School, Class } from "@/types/controle-escolas/school";
 import { useParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { useRandomId } from "@/hooks/id-random";

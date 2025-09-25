@@ -1,0 +1,19 @@
+import { MovieSelected } from "@/components/site/prime-flix/movie-selected";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Produto X - MeuSite",
+  description: "Página do Produto X",
+  openGraph: {
+    title: "Produto X - Open Graph",
+    description: "Detalhes do Produto X",
+  },
+};
+
+export default function Page() {
+  return (
+    <div className="w-full max-w-6xl mx-auto p-4">
+      <MovieSelected />
+    </div>
+  );
+}

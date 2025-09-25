@@ -24,21 +24,6 @@ export const filterFinancesByMonth = (list: Finance[], date: string): Finance[] 
 }
 
 export const formatDate = (date: Date): string => {
-    // AQUI PODEMOS FAZER DE 3  FORMAS
-
-    // FORMA 1
-    // let year = date.getFullYear()
-    // let month = date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1
-    // let day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()
-    // return `${day}/${month}/${year}`
-
-    // FORMA 2
-    // let year = date.getFullYear();
-    // let month = String(date.getMonth() + 1).padStart(2, "0");
-    // let day = String(date.getDate()).padStart(2, "0");
-    // return `${day}/${month}/${year}`
-
-    // FORMA 3
     return new Intl.DateTimeFormat("pt-BR").format(date);
 }
 
