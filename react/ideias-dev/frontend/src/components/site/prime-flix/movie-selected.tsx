@@ -12,7 +12,7 @@ export const MovieSelected = () => {
   const [movie, setMovie] = useState<any | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const fetchMovieDetails = async () => {
+  const loadMovie = async () => {
     setLoading(true);
     try {
       const response = await axios.get(
@@ -35,43 +35,62 @@ export const MovieSelected = () => {
   };
 
   useEffect(() => {
-    fetchMovieDetails();
+    loadMovie();
   }, []);
 
   if (loading) {
-    return <p>Carregando...</p>;
+    return <div className="text-gray-500 text-2xl font-bold animate-pulse">Carregando...</div>;
   }
 
   if (!movie) {
-    return <p>Carregando...</p>;
+    return <div className="text-gray-500 text-2xl font-bold animate-pulse">Carregando...</div>;
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div>
-        <img
-          src={movie.backdrop_path ? `${IMAGE_BASE_URL}${movie.backdrop_path}` : "/placeholder.jpg"}
-          alt={movie.title || "Sem título"}
-          loading="lazy"
-          className="rounded-md shadow"
-        />
+    <>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <img
+            src={movie.backdrop_path ? `${IMAGE_BASE_URL}${movie.backdrop_path}` : "/placeholder.jpg"}
+            alt={movie.title || "Sem título"}
+            loading="lazy"
+            className="rounded-md shadow"
+          />
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <div className="flex-1">
+            <h3 className="text-center font-bold text-gray-700">{movie.title}</h3>
+          </div>
+
+          <div className="flex-1">
+            <h3 className="font-semibold text-gray-700">Sinopse</h3>
+            <p>{movie.overview || "Sinopse não disponível."}</p>
+          </div>
+
+          <div className="flex-1 flex flex-col md:flex-row gap-4 items-center justify-between">
+            <div className="flex-1">
+              <h3 className="font-semibold text-gray-700">Gêneros</h3>
+
+              <div className="flex flex-col md:flex-row gap-4">
+                {movie?.genres?.map((genre: any) => (
+                  <p key={genre.id}>{genre.name || "Gênero não disponível."}</p>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex-1">
+              <h3 className="font-semibold text-gray-700">Avaliação</h3>
+              <p>{movie.vote_average ? `${movie.vote_average.toFixed(1)} / 10` : "Sem avaliação"}</p>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div className="flex flex-col gap-2">
-        <div className="flex-1">
-          <h3 className="text-center font-bold text-gray-700">{movie.title}</h3>
-        </div>
-
-        <div className="flex-1">
-          <h3 className="font-semibold text-gray-700">Sinopse</h3>
-          <p>{movie.overview || "Sinopse não disponível."}</p>
-        </div>
-
-        <div className="flex-1">
-          <h3 className="font-semibold text-gray-700">Avaliação</h3>
-          <p>{movie.vote_average ? `${movie.vote_average.toFixed(1)} / 10` : "Sem avaliação"}</p>
-        </div>
+      <div className="flex flex-col md:flex-row items-center justify-center gap-4 mt-4">
+        <button className="rounded-md font-semibold text-center bg-blue-400 hover:bg-blue-700 py-2 px-4">Adicionar Favoritos</button>
+        <button className="rounded-md font-semibold text-center bg-green-400 hover:bg-green-700 py-2 px-4">Assistir Trailer</button>
       </div>
-    </div>
+    </>
   );
 };
