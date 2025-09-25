@@ -28,12 +28,6 @@ export const data = {
             stacks: ["react", "typescript", "nextjs", "tailwindcss", "storage"],
             projetos: [
                 {
-                    name: "Fetch - API",
-                    description: "Projeto que consome dados de APIs externas utilizando Axios, exibindo informações de forma dinâmica e organizada.",
-                    slug: "api",
-                    url: "/projetos/fetch-api",
-                },
-                {
                     name: "Controle de Escolas",
                     description: "Sistema para registrar e acompanhar atividades em diferentes escolas, servindo como ferramenta prática de gestão e também como estudo de programação.",
                     slug: "controle-escolas",
