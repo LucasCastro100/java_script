@@ -5,6 +5,7 @@ import { api } from "@/services/prime-flix/service"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa"
+import { ToastContainer, toast } from 'react-toastify';
 
 export const PrimeFlix = () => {
   const [loading, setLoading] = useState(false)
@@ -15,6 +16,10 @@ export const PrimeFlix = () => {
 
   const API_KEY = "0eb9788f9cf695e61f8e21b7637b58af"
   const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/original/";
+
+  const notifyError = () => toast.error("Erro ao buscar filmes!", {
+    theme: "colored",
+  });
 
   const loadMovies = async (pageNumber: number = 1) => {
     setLoading(true)
@@ -32,10 +37,8 @@ export const PrimeFlix = () => {
       setPage(response.data.page)
       setTotalPages(response.data.total_pages)
       setTotalResults(response.data.total_results)
-
-      console.log(response.data.results)
     } catch (err) {
-      console.error("Erro ao buscar filmes:", err)
+      notifyError()
     } finally {
       setLoading(false)
     }
@@ -53,6 +56,7 @@ export const PrimeFlix = () => {
         </div>
       ) : (
         <>
+          <ToastContainer />
           <ul className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {movies.map((movie) => (
               <li key={movie.id} className="rounded-md border border-gray-300 flex flex-col">
