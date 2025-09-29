@@ -1,13 +1,15 @@
-import { BroserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
+import NotFound from './pages/NotFound'
 
 function RoutesApp() {
     return (
-        <BroserRouter>
+        <BrowserRouter>
             <Routes>
                 <Route path='/' element={ <Home /> } />
+                <Route path='*' element={ <NotFound /> } />
             </Routes>
-        </BroserRouter>
+        </BrowserRouter>
     )
 }
 
