@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { use, useEffect, useState } from 'react'
 import { db } from '../../firebaseConection'
 import { doc, setDoc, collection, addDoc, getDoc, getDocs } from 'firebase/firestore'
+import { Link } from 'react-router-dom'
 
 function Home() {
     const [posts, setPosts] = useState([])
@@ -37,13 +38,18 @@ function Home() {
                     })
                 })
                 setPosts(list)
+                loadPosts()
             })
             .catch((error) => { console.log('Erro ao buscar os posts' + error) })
     }
 
+    useEffect(() => {
+        loadPosts()
+    }, [])
+
     return (
         <div className='container'>
-            <h1 className='font-bold'>React Js + Firebase</h1>
+            <h1 className=''>React Js + Firebase</h1>
             <h2>Meus Posts</h2>
 
             <button onClick={() => setOpenModal(true)}>Cadastrar Post</button>
@@ -61,17 +67,17 @@ function Home() {
                     </div>
 
                     <button onClick={() => setOpenModal(false)}>Fechar</button>
-                    <button onClick={handleAdd}>Salvar</button>
-                    <button onClick={loadPosts}>Listar Posts</button>
+                    <button onClick={handleAdd}>Salvar</button>                    
                 </div>
             )}
 
             {posts.map((post) => {
                 return (
                     <div key={post.id} className='post'>
-                        <h3>{post.title}</h3>
-                        <p>{post.autor}</p>
+                        <h3>Titulo: {post.title}</h3>
+                        <p>Autor: {post.autor}</p>
                         <span>ID: {post.id}</span>
+                        <Link to={`/post/${post.id}`}>Acessar</Link>
                     </div>
                 )
             })}
