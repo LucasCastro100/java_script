@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
-import { db } from '../../firebaseConection'
+import { auth, db } from '../../firebaseConection'
 import { doc, setDoc, collection, addDoc, getDoc, getDocs, onSnapshot } from 'firebase/firestore'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { Link } from 'react-router-dom'
 
 function Home() {
@@ -8,6 +9,9 @@ function Home() {
   const [title, setTitle] = useState('')
   const [autor, setAutor] = useState('')
   const [openModal, setOpenModal] = useState(false)
+
+  const [emailAuth, setEmailAuth] = useState('')
+  const [passAuth, setPassAuth] = useState('')
 
   async function handleAdd() {
     try {
@@ -41,38 +45,80 @@ function Home() {
     return () => unsub()
   }, [])
 
+  async function newUser() {
+    await createUserWithEmailAndPassword(auth, emailAuth, passAuth)
+      .then(() => {
+        console.log('Usuário cadastrado com sucesso!')
+        setEmailAuth('')
+        setPassAuth('')
+      }
+      )
+      .catch((error) => {
+        // TIPOS DE ERRO USANDO FIREBASE
+        if (error.code === 'auth/weak-password') {
+          alert('Senha muito fraca.')
+        } else if (error.code === 'auth/email-already-in-use') {
+          alert('Email já cadastrado.')
+        } else if (error.code === 'auth/invalid-email') {
+          alert('Email inválido.')
+        }
+      })
+  }
+
   return (
     <div className='container'>
-      <h1>React Js + Firebase</h1>
-      <h2>Meus Posts</h2>
+      <div className='home p-1'>
+        <h1 className='text-center text-size-5'>React Js + Firebase</h1>
 
-      <button onClick={() => setOpenModal(true)}>Cadastrar Post</button>
-
-      {openModal && (
-        <div className='areaAdd'>
+        <div className='auth'>
+          <h2 className='text-center text-size-4'>Usuários</h2>
           <div>
-            <label>Titulo</label>
-            <textarea value={title} onChange={(e) => setTitle(e.target.value)} />
+            <label>Email:</label>
+            <input type="text" value={emailAuth} onChange={(e) => setEmailAuth(e.target.value)} />
           </div>
 
           <div>
-            <label>Autor</label>
-            <input type="text" value={autor} onChange={(e) => setAutor(e.target.value)} />
+            <label>Senha:</label>
+            <input type="password" value={passAuth} onChange={(e) => setPassAuth(e.target.value)} />
           </div>
 
-          <button onClick={() => setOpenModal(false)}>Fechar</button>
-          <button onClick={handleAdd}>Salvar</button>
+          <button onClick={newUser} className='text-size-2'>Cadastrar</button>
         </div>
-      )}
 
-      {posts.map((post) => (
-        <div key={post.id} className='post'>
-          <h3>Titulo: {post.title}</h3>
-          <p>Autor: {post.autor}</p>
-          <span>ID: {post.id}</span>
-          <Link to={`/post/${post.id}`}>Acessar</Link>
+        <hr />
+        <h2 className='text-center text-size-4'>Posts</h2>
+        <div className='info-menu'>
+          <p className='m-0 font-bold text-size-2'>Total de posts: {posts.length}</p>
+          <button onClick={() => setOpenModal(true)} className='text-size-2'>Cadastrar Post</button>
         </div>
-      ))}
+
+        {openModal && (
+          <div className='areaAdd'>
+            <div>
+              <label>Titulo</label>
+              <textarea value={title} onChange={(e) => setTitle(e.target.value)} />
+            </div>
+
+            <div>
+              <label>Autor</label>
+              <input type="text" value={autor} onChange={(e) => setAutor(e.target.value)} />
+            </div>
+
+            <button onClick={() => setOpenModal(false)}>Fechar</button>
+            <button onClick={handleAdd}>Salvar</button>
+          </div>
+        )}
+
+        <ul className='list-posts m-0 p-0 list-style-none'>
+          {posts.map((post) => (
+            <li key={post.id} className='post'>
+              <h3 className='m-0'>Titulo: {post.title}</h3>
+              <p className='m-0'>Autor: {post.autor}</p>
+              <Link to={`/post/${post.id}`}>Acessar</Link>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   )
 }

@@ -1,6 +1,11 @@
+// AQUI VAI FICAR TODA A CONEXÃO COM O FIREBASE
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
+// AQUI VAI FICAR TODA A PARTE DE AUTENTICAÇÃO
+import {getAuth} from "firebase/auth";
+
+// AQUI VAI FICAR TODA A CONFIGURAÇÃO DO FIREBASE
 const firebaseConfig = {
     apiKey: "AIzaSyC1TsKCYrx1EwNYJazmgNvogl7bm64JfLs",
     authDomain: "fisrt-project-react.firebaseapp.com",
@@ -12,6 +17,8 @@ const firebaseConfig = {
 };
 
 const fisebaseApp = initializeApp(firebaseConfig);
-const db = getFirestore(fisebaseApp);
 
-export { db };
+const db = getFirestore(fisebaseApp);
+const auth = getAuth(fisebaseApp);
+
+export { db, auth };
