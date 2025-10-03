@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { auth, db } from '../../firebaseConection'
-import { doc, setDoc, collection, addDoc, getDoc, getDocs, onSnapshot } from 'firebase/firestore'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
+import { collection, onSnapshot, addDoc } from 'firebase/firestore'
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth'
 import { Link } from 'react-router-dom'
 
 function Home() {
@@ -48,14 +48,36 @@ function Home() {
     return () => unsub()
   }, [])
 
+useEffect(() => {
+  async function checkLogin() {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // USUARIO PERMACE LOGADO
+        
+        setUserDetail({
+        uid: user.uid,
+        email: user.email
+        }
+      )
+        console.log(user)
+      } else {
+        //USUARIO NAO ESTA LOGADO
+        setUser(false)
+        setUserDetail({})
+      }
+    })
+  }
+
+  checkLogin()
+}, [])
+
   async function newUser() {
     await createUserWithEmailAndPassword(auth, emailAuth, passAuth)
       .then(() => {
         console.log('Usuário cadastrado com sucesso!')
         setEmailAuth('')
         setPassAuth('')
-      }
-      )
+      })
       .catch((error) => {
         // TIPOS DE ERRO USANDO FIREBASE
         if (error.code === 'auth/weak-password') {
@@ -88,16 +110,16 @@ function Home() {
     })
   }
 
+  async function logout() {
+    await signOut(auth)
+    setUser(false)
+    setUserDetail({})
+  }
+
   return (
     <div className='container'>
       <div className='home p-1'>
-        <h1 className='text-center text-size-5'>React Js + Firebase</h1>
-
-        {
-          user && (
-            <div>SEja bem vindes, vc ja esta logado!</div>
-          )
-        }
+        <h1 className='text-center text-size-5'>React Js + Firebase</h1>     
 
         <div className='auth'>
           <h2 className='text-center text-size-4'>Usuários</h2>
@@ -114,7 +136,18 @@ function Home() {
           <div className=''>
             <button onClick={newUser} className='text-size-2'>Cadastrar</button>
             <button onClick={login} className='text-size-2'>Acessar</button>
-          </div>          
+          </div>
+
+          {
+          user && (
+            <>
+            <div>Seja bem vindo(a), vc ja esta logado!</div>
+            <div>UID: {userDetail.uid}</div>  
+            <div>E-mail: {userDetail.email}</div>  
+            <button onClick={logout}>Sair</button>
+            </>            
+          )
+        }   
         </div>
 
         <hr />
