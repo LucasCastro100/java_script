@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { auth, db } from '../../firebaseConection'
 import { doc, setDoc, collection, addDoc, getDoc, getDocs, onSnapshot } from 'firebase/firestore'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
 import { Link } from 'react-router-dom'
 
 function Home() {
@@ -12,6 +12,9 @@ function Home() {
 
   const [emailAuth, setEmailAuth] = useState('')
   const [passAuth, setPassAuth] = useState('')
+
+  const [user, setUser] = useState(false)
+  const [userDetail, setUserDetail] = useState({})
 
   async function handleAdd() {
     try {
@@ -65,10 +68,36 @@ function Home() {
       })
   }
 
+  async function login(){
+    await signInWithEmailAndPassword(auth, emailAuth, passAuth)
+    .then((value) => {
+      alert('Usuário logado com sucesso!')
+
+      setUserDetail({
+        uid: value.user.uid,
+        email: value.user.email
+      })
+
+      setUser(true)
+
+      setEmailAuth('')
+      setPassAuth('')
+    })
+    .catch(() => {
+      alert('E-mail ou senha inválidos')
+    })
+  }
+
   return (
     <div className='container'>
       <div className='home p-1'>
         <h1 className='text-center text-size-5'>React Js + Firebase</h1>
+
+        {
+          user && (
+            <div>SEja bem vindes, vc ja esta logado!</div>
+          )
+        }
 
         <div className='auth'>
           <h2 className='text-center text-size-4'>Usuários</h2>
@@ -82,7 +111,10 @@ function Home() {
             <input type="password" value={passAuth} onChange={(e) => setPassAuth(e.target.value)} />
           </div>
 
-          <button onClick={newUser} className='text-size-2'>Cadastrar</button>
+          <div className=''>
+            <button onClick={newUser} className='text-size-2'>Cadastrar</button>
+            <button onClick={login} className='text-size-2'>Acessar</button>
+          </div>          
         </div>
 
         <hr />
