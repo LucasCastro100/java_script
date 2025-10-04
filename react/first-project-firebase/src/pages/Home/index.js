@@ -30,7 +30,26 @@ function Home() {
     }
   }
 
-  useEffect(() => {
+  async function checkLogin() {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // USUARIO PERMACE LOGADO
+
+        setUser(true)
+        setUserDetail({
+          uid: user.uid,
+          email: user.email
+        }
+        )
+      } else {
+        //USUARIO NAO ESTA LOGADO
+        setUser(false)
+        setUserDetail({})
+      }
+    })
+  }
+
+  function loadPostRealTime() {
     // escuta em tempo real os posts
     const unsub = onSnapshot(collection(db, 'posts'), (snapshot) => {
       let listPosts = []
@@ -46,30 +65,7 @@ function Home() {
 
     // cleanup para não acumular listeners
     return () => unsub()
-  }, [])
-
-useEffect(() => {
-  async function checkLogin() {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // USUARIO PERMACE LOGADO
-        
-        setUserDetail({
-        uid: user.uid,
-        email: user.email
-        }
-      )
-        console.log(user)
-      } else {
-        //USUARIO NAO ESTA LOGADO
-        setUser(false)
-        setUserDetail({})
-      }
-    })
   }
-
-  checkLogin()
-}, [])
 
   async function newUser() {
     await createUserWithEmailAndPassword(auth, emailAuth, passAuth)
@@ -90,24 +86,24 @@ useEffect(() => {
       })
   }
 
-  async function login(){
+  async function login() {
     await signInWithEmailAndPassword(auth, emailAuth, passAuth)
-    .then((value) => {
-      alert('Usuário logado com sucesso!')
+      .then((value) => {
+        alert('Usuário logado com sucesso!')
 
-      setUserDetail({
-        uid: value.user.uid,
-        email: value.user.email
+        setUserDetail({
+          uid: value.user.uid,
+          email: value.user.email
+        })
+
+        setUser(true)
+
+        setEmailAuth('')
+        setPassAuth('')
       })
-
-      setUser(true)
-
-      setEmailAuth('')
-      setPassAuth('')
-    })
-    .catch(() => {
-      alert('E-mail ou senha inválidos')
-    })
+      .catch(() => {
+        alert('E-mail ou senha inválidos')
+      })
   }
 
   async function logout() {
@@ -116,10 +112,15 @@ useEffect(() => {
     setUserDetail({})
   }
 
+  useEffect(() => {
+    checkLogin()
+    loadPostRealTime()
+  }, [])
+
   return (
     <div className='container'>
       <div className='home p-1'>
-        <h1 className='text-center text-size-5'>React Js + Firebase</h1>     
+        <h1 className='text-center text-size-5'>React Js + Firebase</h1>
 
         <div className='auth'>
           <h2 className='text-center text-size-4'>Usuários</h2>
@@ -139,15 +140,15 @@ useEffect(() => {
           </div>
 
           {
-          user && (
-            <>
-            <div>Seja bem vindo(a), vc ja esta logado!</div>
-            <div>UID: {userDetail.uid}</div>  
-            <div>E-mail: {userDetail.email}</div>  
-            <button onClick={logout}>Sair</button>
-            </>            
-          )
-        }   
+            user && (
+              <>
+                <div>Seja bem vindo(a), vc ja esta logado!</div>
+                <div>UID: {userDetail.uid}</div>
+                <div>E-mail: {userDetail.email}</div>
+                <button onClick={logout}>Sair</button>
+              </>
+            )
+          }
         </div>
 
         <hr />
