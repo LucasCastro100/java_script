@@ -1,4 +1,4 @@
-import { useState, FormEvent } from 'react'
+import { useState, type FormEvent } from 'react'
 import { BsSearch } from 'react-icons/bs'
 import { Link, useNavigate } from 'react-router-dom'
 
@@ -7,7 +7,7 @@ export function Home() {
   const navigate = useNavigate()
   const value: number = -1.20
 
-  async function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
     if (input === '') return
 
