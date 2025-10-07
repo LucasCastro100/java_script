@@ -1,18 +1,84 @@
-import { useState, type FormEvent } from 'react'
+import { useEffect, useState, type FormEvent } from 'react'
 import { BsSearch } from 'react-icons/bs'
 import { Link, useNavigate } from 'react-router-dom'
 
+interface CoinProps {
+  id: string;
+  name: string;
+  symbol: string;
+  priceUsd: string;
+  vwap24Hr: string;
+  changePercent24Hr: string;
+  rank: string;
+  supply: string;
+  maxSupply: string;
+  marketCapUsd: string;
+  volumeUsd24Hr: string;
+  explore: string;
+  formatedPrice?: string
+  formatedMarket?: string
+  formatedVolume?: string
+}
+
+interface DataProps {
+  data: CoinProps[];
+}
+
 export function Home() {
   const [input, SetInput] = useState('')
+  const [coins, setCoins] = useState<CoinProps[]>([])
   const navigate = useNavigate()
-  const value: number = -1.20
 
-  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function loadCoins() {
+    await fetch(`https://rest.coincap.io/v3/assets?limit=10&offset=0&apiKey=${import.meta.env.VITE_COIN_API_KEY}`)
+      .then(response => response.json())
+      .then((data: DataProps) => {
+        const coinsData = data.data
+
+        const price = Intl.NumberFormat('en-Us', {
+          style: 'currency',
+          currency: 'USD'
+        })
+
+        const priceCompact = Intl.NumberFormat('en-Us', {
+          style: 'currency',
+          currency: 'USD',
+          notation: 'compact'
+        })
+
+        const formatedResult = coinsData.map((item) => {
+          const formated = {
+            ...item,
+            formatedPrice: price.format(Number(item.priceUsd)),
+            formatedMarket: priceCompact.format(Number(item.marketCapUsd)),
+            formatedVolume: priceCompact.format(Number(item.volumeUsd24Hr)),
+          }
+
+          return formated
+        })
+        console.log(formatedResult)
+        setCoins(formatedResult)
+      })
+      .catch((error) => {
+        console.log(`Erro ao buscar os dados: ${error}`)
+      })
+  }
+
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
     if (input === '') return
 
-    navigate(`/detail/${input}`)    
+    navigate(`/detail/${input}`)
   }
+
+  async function handleGetMore() {
+    alert('Carregou mais')
+    // console.log(`https://rest.coincap.io/v3/assets?limit=10&offset=0&apiKey=${import.meta.env.VITE_COIN_API_KEY}`)
+  }
+
+  useEffect(() => {
+    loadCoins()
+  }, [])
 
   return (
     <div className="p-4">
@@ -32,9 +98,9 @@ export function Home() {
       </form>
 
       <div className="w-full overflow-x-auto mt-4">
-        <table className="w-full min-w-max border-collapse border border-gray-300 text-center">
-          <thead className="bg-gray-100">
-            <tr className='rounded-md'>
+        <table className="w-full min-w-max border-separate border-spacing-x-0 border-spacing-y-4 text-center">
+          <thead className="text-white">
+            <tr>
               <th scope='col' className="px-4 py-2 font-bold">MOEDA</th>
               <th scope='col' className="px-4 py-2 font-bold">VALOR MERCADO</th>
               <th scope='col' className="px-4 py-2 font-bold">PREÇO</th>
@@ -43,34 +109,54 @@ export function Home() {
             </tr>
           </thead>
 
-          <tbody id='tbody' className='bg-gray-100'>
-            <tr>
-              <td data-label="Moeda" className="px-4 py-2 font-bold">
-                <Link to="/detail/bitcoin" className='flex flex-row items-center gap-2 justify-center'>
-                  <span>Bitcoin</span>
-                  <span className='uppercase text-gray-500'>BTC</span>
-                </Link>
-              </td>
+          <tbody id='tbody' className='text-white'>
+            {coins.length > 0 ? (
+              <>
+                {coins.map((coin) => {
+                  return (
+                    <tr key={coin.id} >
+                      <td data-label="Moeda" className="px-4 py-2 font-bold rounded-l-md bg-gray-900">
+                        <Link to={`/detail/${coin.id}`} className='flex flex-row gap-2 items-center'>
+                          <img alt={`Logo Cripto ${coin.name}`} src={`https://assets.coincap.io/assets/icons/${coin.symbol.toLowerCase()}@2x.png`} className=''/>
 
-              <td data-label="Valor Mercado" className="px-4 py-2 font-bold">
-                1T
-              </td>
+                          <div className="flex flex-col ">
+                            <span>{coin.name}</span>
+                            <span className='uppercase text-gray-500 text-start'>{coin.symbol}</span>
+                          </div>
+                        </Link>
+                      </td>
 
-              <td data-label="Preco" className="px-4 py-2 font-bold">
-                8.000
-              </td>
+                      <td data-label="Valor Mercado" className="px-4 py-2 font-bold bg-gray-900">
+                        {coin.formatedMarket}
+                      </td>
 
-              <td data-label="Volume" className="px-4 py-2 font-bold">
-                500B
-              </td>
+                      <td data-label="Preco" className="px-4 py-2 font-bold bg-gray-900">
+                        {coin.formatedPrice}
+                      </td>
 
-              {/* aqui se for positivo fica verde se nao fica vermelho */}
-              <td data-label="Mudanca"  className={`px-4 py-2 font-bold ${value > 0 ? 'text-green-600' : 'text-red-600'}`}>
-                {value}
-              </td>
-            </tr>
+                      <td data-label="Volume" className="px-4 py-2 font-bold bg-gray-900">
+                        {coin.formatedVolume}
+                      </td>
+
+                      {/* aqui se for positivo fica verde se nao fica vermelho */}
+                      <td data-label="Mudanca" className={`px-4 py-2 font-bold bg-gray-900 rounded-r-md ${Number(coin.changePercent24Hr) > 0 ? 'text-green-600' : 'text-red-600'}`}>
+                        {Number(coin.changePercent24Hr).toFixed(2)}%
+                      </td>
+                    </tr>
+                  )
+                })}
+              </>
+            ) : (
+              <tr className="">
+                <th colSpan={5} className='text-2xl'>OPS... Nenhuma moeda encontrada!</th>
+              </tr>
+            )}
           </tbody>
         </table>
+
+        <div className="mt-4">
+          <button className='py-2 px-4 rounded-md text-white font-bold bg-blue-400 hover:bg-blue-800' onClick={handleGetMore}>Carregar Mais</button>
+        </div>
       </div>
     </div>
   )
