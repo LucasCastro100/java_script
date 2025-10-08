@@ -1,7 +1,7 @@
-export function Home(){
+export function Login(){
     return (
         <div className="">
-          <h1>Home</h1>
+          <h1>Login</h1>
         </div>
       )
 }

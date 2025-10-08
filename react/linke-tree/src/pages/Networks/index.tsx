@@ -1,7 +1,7 @@
-export function Home(){
+export function Networks(){
     return (
         <div className="">
-          <h1>Home</h1>
+          <h1>Networks</h1>
         </div>
       )
 }
