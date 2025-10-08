@@ -2,7 +2,7 @@ import { useEffect, useState, type FormEvent } from 'react'
 import { BsSearch } from 'react-icons/bs'
 import { Link, useNavigate } from 'react-router-dom'
 
-interface CoinProps {
+export interface CoinProps {
   id: string;
   name: string;
   symbol: string;
@@ -25,12 +25,32 @@ interface DataProps {
 }
 
 export function Home() {
-  const [input, SetInput] = useState('')
+  const [input, setInput] = useState('')
   const [coins, setCoins] = useState<CoinProps[]>([])
+  const [totalPage, setTotalPages] = useState(0)
+  const [selectedLimit, setSelectedLimit] = useState("10")
+  const [offset, setOffset] = useState(0)
+  const [currentPage, setCurrentPage] = useState(0);
   const navigate = useNavigate()
 
-  async function loadCoins() {
-    await fetch(`https://rest.coincap.io/v3/assets?limit=10&offset=0&apiKey=${import.meta.env.VITE_COIN_API_KEY}`)
+  async function totalPages() {
+    await fetch(`https://rest.coincap.io/v3/assets?apiKey=${import.meta.env.VITE_COIN_API_KEY}`)
+      .then(response => response.json())
+      .then((data) => {
+        pagination(data.data.length)
+      })
+  }
+
+  function pagination(total_pages: number) {
+    console.log(`total pagina: ${total_pages}\nLimite por pagina: ${selectedLimit}\nPaginas: ${total_pages / Number(selectedLimit)}`)
+
+    setTotalPages(total_pages / Number(selectedLimit))
+  }
+
+  async function loadCoins(qtd_coins: string, qtd_offset: number) {
+    const qtd = Number(qtd_coins)
+
+    await fetch(`https://rest.coincap.io/v3/assets?limit=${qtd}&offset=${qtd_offset}&apiKey=${import.meta.env.VITE_COIN_API_KEY}`)
       .then(response => response.json())
       .then((data: DataProps) => {
         const coinsData = data.data
@@ -56,7 +76,7 @@ export function Home() {
 
           return formated
         })
-        console.log(formatedResult)
+        // console.log(formatedResult)
         setCoins(formatedResult)
       })
       .catch((error) => {
@@ -71,14 +91,15 @@ export function Home() {
     navigate(`/detail/${input}`)
   }
 
-  async function handleGetMore() {
-    alert('Carregou mais')
-    // console.log(`https://rest.coincap.io/v3/assets?limit=10&offset=0&apiKey=${import.meta.env.VITE_COIN_API_KEY}`)
-  }
-
+  //Quando totalPage mudar, reseta tudo e recarrega a primeira página
   useEffect(() => {
-    loadCoins()
-  }, [])
+    totalPages()
+    setCurrentPage(0);
+    setOffset(0);
+    if (totalPage > 0) {
+      loadCoins(selectedLimit, 0);
+    }
+  }, [totalPage, selectedLimit]);
 
   return (
     <div className="p-4">
@@ -89,7 +110,9 @@ export function Home() {
           placeholder="Digite o nome de uma moeda digital EX: bitcoin"
           className="flex-1 bg-white text-black px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           value={input}
-          onChange={(e) => { SetInput(e.target.value) }}
+          onChange={(e) => {
+            setInput(e.target.value)
+          }}
         />
 
         <button type="submit" className='flex items-center justify-center border-blue-500 bg-white rounded-md p-2'>
@@ -97,8 +120,57 @@ export function Home() {
         </button>
       </form>
 
+      <div className="flex flex-col md:flex-row gap-4 mt-4">
+        <div className="flex-1 flex flex-col gap-2">
+          <label htmlFor="" className='text-white'>Quantidade </label>
+          <select
+            value={selectedLimit}
+            onChange={(e) => {
+              setSelectedLimit(e.target.value)
+              loadCoins(selectedLimit, offset)
+            }}
+            className="border bg-white p-2 rounded"
+          >
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+          </select>
+        </div>
+
+        <div className="flex-1 flex items-center justify-center">
+          {totalPage > 0 ? (
+            <div className='flex flex-col gap-2 items-center justify-center'>
+              <div className="w-full text-center text-white">Paginação</div>
+              <div className="flex flex-row gap-2 items-center justify-center">
+                {Array.from({ length: totalPage }, (_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => {
+                      const newOffset = i * Number(selectedLimit);
+                      setCurrentPage(i);
+                      setOffset(newOffset);
+                      loadCoins(selectedLimit, newOffset); // 👈 usa o valor direto
+                    }}
+                    className={`px-3 py-1 rounded transition-all duration-150 ${currentPage === i
+                      ? "bg-blue-800 text-white scale-105"
+                      : "bg-blue-400 text-white hover:bg-blue-800"
+                      }`}
+                  >
+                    {i + 1}
+                  </button>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div className="">
+              <p className="text-red-600 font-bold text-center w-full">SEM PAGINAÇÃO</p>
+            </div>
+          )}
+        </div>
+      </div>
+
       <div className="w-full overflow-x-auto mt-4">
-        <table className="w-full min-w-max border-separate border-spacing-x-0 border-spacing-y-4 text-center">
+        <table className="w-full min-w-max  border-separate border-spacing-x-0 border-spacing-y-4 text-center">
           <thead className="text-white">
             <tr>
               <th scope='col' className="px-4 py-2 font-bold">MOEDA</th>
@@ -115,9 +187,9 @@ export function Home() {
                 {coins.map((coin) => {
                   return (
                     <tr key={coin.id} >
-                      <td data-label="Moeda" className="px-4 py-2 font-bold rounded-l-md bg-gray-900">
+                      <td className="px-4 py-2 font-bold rounded-l-md bg-gray-900">
                         <Link to={`/detail/${coin.id}`} className='flex flex-row gap-2 items-center'>
-                          <img alt={`Logo Cripto ${coin.name}`} src={`https://assets.coincap.io/assets/icons/${coin.symbol.toLowerCase()}@2x.png`} className=''/>
+                          <img alt={`Logo Cripto ${coin.name}`} src={`https://assets.coincap.io/assets/icons/${coin.symbol.toLowerCase()}@2x.png`} className='' />
 
                           <div className="flex flex-col ">
                             <span>{coin.name}</span>
@@ -126,20 +198,19 @@ export function Home() {
                         </Link>
                       </td>
 
-                      <td data-label="Valor Mercado" className="px-4 py-2 font-bold bg-gray-900">
+                      <td className="px-4 py-2 font-bold bg-gray-900">
                         {coin.formatedMarket}
                       </td>
 
-                      <td data-label="Preco" className="px-4 py-2 font-bold bg-gray-900">
+                      <td className="px-4 py-2 font-bold bg-gray-900">
                         {coin.formatedPrice}
                       </td>
 
-                      <td data-label="Volume" className="px-4 py-2 font-bold bg-gray-900">
+                      <td className="px-4 py-2 font-bold bg-gray-900">
                         {coin.formatedVolume}
                       </td>
 
-                      {/* aqui se for positivo fica verde se nao fica vermelho */}
-                      <td data-label="Mudanca" className={`px-4 py-2 font-bold bg-gray-900 rounded-r-md ${Number(coin.changePercent24Hr) > 0 ? 'text-green-600' : 'text-red-600'}`}>
+                      <td className={`px-4 py-2 font-bold bg-gray-900 rounded-r-md ${Number(coin.changePercent24Hr) > 0 ? 'text-green-600' : 'text-red-600'}`}>
                         {Number(coin.changePercent24Hr).toFixed(2)}%
                       </td>
                     </tr>
@@ -153,10 +224,6 @@ export function Home() {
             )}
           </tbody>
         </table>
-
-        <div className="mt-4">
-          <button className='py-2 px-4 rounded-md text-white font-bold bg-blue-400 hover:bg-blue-800' onClick={handleGetMore}>Carregar Mais</button>
-        </div>
       </div>
     </div>
   )
