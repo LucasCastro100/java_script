@@ -1,6 +1,6 @@
 export function Networks(){
     return (
-        <div className="">
+        <div className="p-4">
           <h1>Networks</h1>
         </div>
       )

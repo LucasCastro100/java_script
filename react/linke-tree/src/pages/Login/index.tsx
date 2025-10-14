@@ -1,11 +1,14 @@
 import { useState, type FormEvent } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Input } from "../../components/Input";
-import {auth, db} from '../../services/firebaseConection'
+
+import { auth } from '../../services/firebaseConection'
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 export function Login() {
   const [email, setEmail] = useState("")
   const [pass, setPass] = useState("")
+  const navigate = useNavigate()
 
   function handleForm(e: FormEvent) {
     e.preventDefault()
@@ -15,17 +18,20 @@ export function Login() {
       return
     }
 
-    alert('Clicou')
-
-    setEmail("")
-    setPass("")
-
-    console.log(
-      {
-        email: email,
-        pass: pass
-      }
-    )
+    signInWithEmailAndPassword(auth, email, pass)
+      .then(() => {
+        navigate('/admin', {replace: true})
+      })
+      .catch((error) => {
+        if (error.code === 'auth/user-not-found') {
+          alert('Usuário não encontrado!')
+        } else if (error.code === 'auth/wrong-password') {
+          alert('Senha incorreta!')
+        } else {
+          alert('Erro ao tentar fazer login!')
+        }
+        console.log(error)
+      })
   }
 
   return (
