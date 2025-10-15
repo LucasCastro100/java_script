@@ -1,7 +1,13 @@
-export function Admin(){
-    return (
-        <div className="p-4">
-          <h1>Admin</h1>
-        </div>
-      )
+import { Header } from "../../components/Header";
+
+export function Admin() {
+  return (
+    <>
+      <Header />
+
+      <div className="p-4">
+        admin
+      </div>
+    </>
+  )
 }

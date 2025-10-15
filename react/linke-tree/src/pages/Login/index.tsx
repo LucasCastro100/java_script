@@ -35,8 +35,8 @@ export function Login() {
   }
 
   return (
-    <div className="flex flex-col gap-4 items-center justify-center h-screen">
-      <div className="rounded-md border-2 border-white p-8 bg-gradient-to-r from-white/10 via-white/5 to-white/10 backdrop-blur-lg shadow-xl ring-1 ring-white/5">
+    <div className="flex flex-col gap-4 bg-black p-4 items-center justify-center h-screen">
+      <div className="rounded-md border-2 border-white p-8 bg-gradient-to-r from-white/20 via-white/20 to-white/20 backdrop-blur-lg shadow-xl ring-1 ring-white/20">
         <div className="text-center">
           <Link to={'/'} className="font-bold text-4xl"><span className="text-yellow-700">Dev</span><span className="text-blue-500">Link</span></Link>
         </div>

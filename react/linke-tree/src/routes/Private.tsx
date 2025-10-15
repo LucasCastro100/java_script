@@ -41,7 +41,7 @@ export function Private({ children }: PrivateProps): any {
     }
 
     if (!signed) {
-        return <Navigate to='/' />;
+        return <Navigate to='/login' />;
     }
    
 
