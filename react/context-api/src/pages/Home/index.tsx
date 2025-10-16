@@ -1,5 +1,19 @@
-export function Home() {
+import { Alunos } from "../../components/Alunos";
+import { UserProvider } from "../../context/user";
+
+export function Home() {    
     return (
-    <h1 className="font-5xl text-center">Home Page</h1>
+        <UserProvider>
+            <h1 className="font-5xl text-center">
+                Escola Dev
+
+                <br />
+                <hr />
+
+                <Alunos />
+
+                
+            </h1>
+        </UserProvider>
     );
 }
