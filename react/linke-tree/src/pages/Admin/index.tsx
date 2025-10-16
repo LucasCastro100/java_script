@@ -1,34 +1,90 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Header } from "../../components/Header";
 import { Input } from "../../components/Input";
-import { FiTrash } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { addDoc, collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import { db } from "../../services/firebaseConection";
+import { ToastContainer, toast } from "react-toastify";
+import { MyLink } from "../../components/MyLink";
 
 export function Admin() {
+  const [links, setLinks] = useState([]);
   const [linkName, setLinkName] = useState("");
   const [linkUrl, setLinkUrl] = useState("");
   const [linkBgColor, setLinkBgColor] = useState("#ffffff");
   const [linkColor, setLinkColor] = useState("#000000");
 
-  function handleForm(e: React.FormEvent) {
+  const notifySuccess = () => toast.success("Link adicionado com sucesso!", {
+    theme: "colored",
+  });
+
+  const notifyError = () => toast.error("Esse link já esta em sua lsita de favoritos!", {
+    theme: "colored",
+  });
+
+  function clearForm() {
+    setLinkName("");
+    setLinkUrl("");
+    setLinkBgColor("#ffffff");
+    setLinkColor("#000000");
+  }
+
+  async function handleForm(e: React.FormEvent) {
     e.preventDefault();
+
 
     if (!linkName || !linkUrl) {
       alert("Preencha todos os campos!");
       return;
     }
 
-    console.log({
-      linkName,
-      linkUrl,
-      linkBgColor,
-      linkColor
+    await addDoc(collection(db, "links"), {
+      name: linkName,
+      url: linkUrl,
+      bg: linkBgColor,
+      color: linkColor,
+      created: new Date()
     })
+      .then(() => {
+        notifySuccess()
+        clearForm();
+      })
+      .catch((error) => {
+        notifyError()
+        console.error("Erro ao salvar o link: ", error);
+      });
   }
+
+  async function loadLinks() {
+    const linksRef = collection(db, "links");
+    const queryRef = query(linksRef, orderBy("created", "asc"));
+
+    const querySnapshot = onSnapshot(queryRef, (snapshot) => {
+      let myLinks: any = [];
+
+      snapshot.forEach((doc) => {
+        myLinks.push({
+          id: doc.id,
+          name: doc.data().name,
+          url: doc.data().url,
+          bg: doc.data().bg,
+          color: doc.data().color
+        })
+      })
+
+      setLinks(myLinks)
+    });
+
+    return () => querySnapshot();
+  }
+
+  useEffect(() => {
+    loadLinks()
+  }, [])
 
   return (
     <>
       <Header />
+      <ToastContainer />
 
       <div className="p-4">
         <form onSubmit={handleForm} className="flex flex-col gap-4 mb-8">
@@ -73,15 +129,22 @@ export function Admin() {
         </h2>
 
         <article className="flex flex-col gap-4">
-          <div className="flex .flex-row items-center justify-between px-4 py-2 rounded-md bg-zinc-900">
-            <Link to={""} target="_blank" className="font-medium">
-              <p> teste</p>
-            </Link>
-
-            <button>
-              <FiTrash size={20} color="#fff" />
-            </button>
-          </div>
+          {
+            links.length === 0 ? (
+              <p className="text-center">Nenhum link cadastrado...</p>
+            ) : (
+              links.map((item: any) => (
+                <MyLink
+                  key={item.id}
+                  id={item.id}
+                  url={item.url}
+                  link={item.name}
+                  bgColor={item.bg}
+                  color={item.color}
+                />
+              ))
+            )
+          }
         </article>
       </div>
     </>
