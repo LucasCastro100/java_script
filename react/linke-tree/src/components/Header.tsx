@@ -2,11 +2,28 @@ import { BiLogOut } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
 import { auth } from '../services/firebaseConection';
 import { signOut } from "firebase/auth";
+import { onAuthStateChanged } from 'firebase/auth';
+import { useEffect, useState } from 'react';
 
 export function Header() {
+    const [signed, setSigned] = useState(false);
+
     async function handleLogout() {
         await signOut(auth)
     }
+
+    useEffect(() => {
+        const unsub = onAuthStateChanged(auth, (user) => {
+            if (user) {                       
+                setSigned(true);
+
+            } else {
+                setSigned(false);
+            }
+        });
+
+        return () => unsub();
+    }, []);
 
     return (
         <header className="p-4">
@@ -25,7 +42,9 @@ export function Header() {
                     </Link>
                 </div>
 
-                <button onClick={handleLogout}><BiLogOut className='cursor-pointer' size={28} color='rgba(255, 50, 50, 0.75)' /></button>
+                {signed && (
+                    <button onClick={handleLogout}><BiLogOut className='cursor-pointer' size={28} color='rgba(255, 50, 50, 0.75)' /></button>
+                )}
             </nav>
         </header>
     )
