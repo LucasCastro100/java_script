@@ -124,7 +124,7 @@ export function Admin() {
           </div>
         </form>
 
-        <h2 className="font-bold text-3xl text-center mb-4">
+        <h2 className="font-medium text-2xl text-center mb-4">
           Meus Links
         </h2>
 

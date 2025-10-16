@@ -36,7 +36,7 @@ export function Header() {
                     </Link>
 
                     <Link to="/admin" className="text-xl font-bold text-gray-800">
-                        Meus Links
+                        Links
                     </Link>
 
                     <Link to="/admin/social" className="text-xl font-bold text-gray-800">
