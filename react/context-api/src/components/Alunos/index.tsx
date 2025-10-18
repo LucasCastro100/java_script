@@ -1,5 +1,5 @@
 import { Nome } from "../Nome";
-import React, { useContext } from "react"
+import { useContext } from "react"
 import { UserContext } from "../../context/user"
 
 export function Alunos(){
