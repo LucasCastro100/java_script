@@ -1,5 +1,16 @@
+import { useContext } from "react";
+import { CartContext } from "../../context/cart";
+import { ToastContainer } from "react-toastify";
+
 export function Home() {
+    const {cartItems, addToCart} = useContext(CartContext)
     return (
-    <h1 className="font-5xl text-center">Home Page</h1>
+        <div className="">
+            <ToastContainer />
+            <h1 className="text-center text-white">Home Page {cartItems}</h1>
+
+
+            {/* <button onClick={addToCart} className="text-white">Adicionar</button> */}
+        </div>
     );
 }
