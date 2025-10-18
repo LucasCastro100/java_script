@@ -1,7 +1,8 @@
 import { Alunos } from "../../components/Alunos";
+import { Footer } from "../../components/Footer";
 import { UserProvider } from "../../context/user";
 
-export function Home() {    
+export function Home() {
     return (
         <UserProvider>
             <h1 className="font-5xl text-center">
@@ -12,7 +13,10 @@ export function Home() {
 
                 <Alunos />
 
-                
+                <br />
+                <hr />
+
+                <Footer />
             </h1>
         </UserProvider>
     );
