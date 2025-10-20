@@ -1,5 +1,7 @@
 import {createContext, useState} from 'react';
 import { toast } from 'react-toastify';
+import productsJson from '../json/products.json'
+import type { ProductType } from '../types/Product';
 
 interface CartProviderProps {
     children: React.ReactNode;
@@ -7,14 +9,16 @@ interface CartProviderProps {
 
 type CartContextData = {    
     cartItems: number;
+    items : ProductType[] 
     addToCart: () => void;
-    removeFromCart: () => void;
+    removeFromCart: () => void;    
 }
 
 export const CartContext = createContext({} as CartContextData);
 
 export function CartProvider({children}: CartProviderProps) {
     const [cartItems, setCartItems] = useState(0);
+    const [items, setItems] = useState<ProductType[]>(productsJson.products); 
 
     function addToCart() {
         setCartItems(items => items + 1);
@@ -32,7 +36,7 @@ export function CartProvider({children}: CartProviderProps) {
     }
 
     return (
-        <CartContext.Provider value={{cartItems, addToCart, removeFromCart}}>
+        <CartContext.Provider value={{cartItems, addToCart, removeFromCart, items}}>
             {children}
         </CartContext.Provider>
     );
