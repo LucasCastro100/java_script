@@ -3,6 +3,7 @@ import { Home } from "./pages/Home";
 import { Cart } from "./pages/Cart";
 import { NotFound } from "./pages/NotFound";
 import { Layout } from "./components/Layout";
+import { InfoCart } from "./pages/InfoCart";
 
 
 export const router = createBrowserRouter([
@@ -16,6 +17,10 @@ export const router = createBrowserRouter([
             {
                 path: "/cart",
                 element: <Cart />
+            },
+             {
+                path: "/cart/:id",
+                element: <InfoCart />
             },
         ]
     },

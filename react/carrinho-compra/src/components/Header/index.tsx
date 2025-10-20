@@ -18,9 +18,9 @@ export function Header() {
                 <div className="flex flex-row gap-4">
                     <Link to={'/cart'} className="relative" title="Carrinho de Compras">
                         <FiShoppingCart size={30} color="#000"/>
-                        {cartItems > 0 && (
+                        {cartItems.length > 0 && (
                             <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
-                                {cartItems}
+                                {cartItems.length}
                             </span>
                         )}
                     </Link>
