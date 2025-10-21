@@ -1,5 +1,16 @@
+import { Suspense } from "react";
+import { ToastContainer } from "react-toastify";
+import { ListHome } from "../../components/Products/ListHome";
+import { ListHomeSkeleton } from "../../components/Products/ListHomeSkeleton";
+
 export function Home() {
     return (
-    <h1 className="font-5xl text-center">Home Page</h1>
+        <div className="">
+            <ToastContainer />
+
+            <Suspense fallback={<ListHomeSkeleton />}>
+                <ListHome />
+            </Suspense>
+        </div>
     );
 }
