@@ -7,41 +7,49 @@ import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import { LayoutHome } from "./components/Layout/home";
 import { CarDetail } from "./pages/Car";
+import { LayoutMain } from "./components/Layout/main";
 
 
 export const router = createBrowserRouter([
+
     {
-        element: <LayoutHome />,
+        element: <LayoutMain />,
         children: [
             {
-                path: "/",
-                element: <Home />
-            },
-        ]
-    },
-    {
-        element: <LayoutDashboard />,
-        children: [
-            {
-                path: "/car-detail",
-                element: <CarDetail />
+                element: <LayoutHome />,
+                children: [
+                    {
+                        path: "/",
+                        element: <Home />
+                    },
+                ]
             },
             {
-                path: "/dashboard",
-                element: <Dashboard />
+                element: <LayoutDashboard />,
+                children: [
+                    {
+                        path: "/car-detail",
+                        element: <CarDetail />
+                    },
+                    {
+                        path: "/dashboard",
+                        element: <Dashboard />
+                    },
+                ]
             },
+            {
+                path: "/login",
+                element: <Login />
+            },
+            {
+                path: "/register",
+                element: <Register />
+            },
+            {
+                path: "*",
+                element: <NotFound />
+            }
         ]
     },
-    {
-        path: "/login",
-        element: <Login />
-    },
-    {
-        path: "/register",
-        element: <Register />
-    },
-    {
-        path: "*",
-        element: <NotFound />
-    }
+
 ]);
