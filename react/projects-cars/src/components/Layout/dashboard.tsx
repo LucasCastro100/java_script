@@ -5,7 +5,7 @@ import { useState } from "react";
 export function LayoutDashboard() {
     const [isOpen, setIsOpen] = useState(true)
     return (
-        <div>
+        <div className="flex w-full">
             <Aside isOpen={isOpen} toggle={() => setIsOpen(!isOpen)} />
 
             <main className="flex-1 transition-all duration-300">

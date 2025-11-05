@@ -8,6 +8,7 @@ import { Register } from "./pages/Register";
 import { LayoutHome } from "./components/Layout/home";
 import { CarDetail } from "./pages/Car";
 import { LayoutMain } from "./components/Layout/main";
+import { NewCar } from "./pages/Dashboard/New";
 
 
 export const router = createBrowserRouter([
@@ -28,12 +29,16 @@ export const router = createBrowserRouter([
                 element: <LayoutDashboard />,
                 children: [
                     {
-                        path: "/car-detail",
+                        path: "/car-detail/:uid",
                         element: <CarDetail />
                     },
                     {
                         path: "/dashboard",
                         element: <Dashboard />
+                    },
+                    {
+                        path: "/new-car",
+                        element: <NewCar />
                     },
                 ]
             },
