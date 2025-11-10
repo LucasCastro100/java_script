@@ -1,19 +1,18 @@
 import { toast } from "react-toastify";
-import { Container } from "../../components/Cointainer";
+import { ButtonAuth } from "../../components/Button/auth";
 
 export function Register() {
 
-    function handleForm() {
+    function handleForm(e: React.FormEvent) {
+        e.preventDefault();
         toast.success('Clicou')
+        toast.error('Clicou');
     }
 
     return (
-        <Container>
-            <form onSubmit={handleForm}>
-                <div className="flex-items-center justify-end">
-                    <button type="submit" className="bg-blue-500 hover:bg-blue-700 font-medium text-xl rounded-xl">Acessar</button>
-                </div>
-            </form>
-        </Container>
+        <form onSubmit={handleForm}>
+            <ButtonAuth text="Regsitrar" />
+        </form>
     );
 }
+

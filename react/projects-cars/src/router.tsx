@@ -9,6 +9,7 @@ import { LayoutHome } from "./components/Layout/home";
 import { CarDetail } from "./pages/Car";
 import { LayoutMain } from "./components/Layout/main";
 import { NewCar } from "./pages/Dashboard/New";
+import { LayoutAuth } from "./components/Layout/auth";
 
 
 export const router = createBrowserRouter([
@@ -43,12 +44,35 @@ export const router = createBrowserRouter([
                 ]
             },
             {
-                path: "/login",
-                element: <Login />
+                element: <LayoutAuth />,
+                children: [
+                    {
+                        path: "/car-detail/:uid",
+                        element: <CarDetail />
+                    },
+                    {
+                        path: "/dashboard",
+                        element: <Dashboard />
+                    },
+                    {
+                        path: "/new-car",
+                        element: <NewCar />
+                    },
+                ]
             },
             {
-                path: "/register",
-                element: <Register />
+                element: <LayoutAuth />,
+                children: [
+                    {
+                        path: "/login",
+                        element: <Login />
+                    },
+                    {
+                        path: "/register",
+                        element: <Register />
+                    },
+                   
+                ]
             },
             {
                 path: "*",

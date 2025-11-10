@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { FiLogIn, FiUser } from "react-icons/fi";
+import { LogoText } from "../LogoText";
 
 export function HeaderHome() {
     const signed = false
@@ -8,10 +9,7 @@ export function HeaderHome() {
     return (
         <div className="border-b-2 border-b-gray-600 w-full">
             <div className="flex flex-col md:flex-row items-center justify-center md:justify-between p-4 gap-4 mx-auto max-w-6xl">
-                <Link to={'/'} className="flex flex-row">
-                    <span className="font-bold text-3xl text-white">Dev</span>
-                    <span className="font-bold text-3xl text-red-700">Cars</span>
-                </Link>
+                <LogoText />
 
                 {!loadingAuth && signed && (
                     <Link to={'/dashboard'} title="Dashboard">
