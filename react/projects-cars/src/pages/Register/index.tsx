@@ -1,10 +1,15 @@
 
 import { ButtonAuth } from "../../components/Button/auth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "../../components/Input";
+import { auth } from "../../services/firebaseConection";
+import { createUserWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
+import { toast } from "react-toastify";
+import { useEffect } from "react";
+
 
 const schema = z
     .object({
@@ -37,36 +42,45 @@ const schema = z
 type FormData = z.infer<typeof schema>
 
 export function Register() {
+    const navigate = useNavigate()
+
     const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
         resolver: zodResolver(schema),
         mode: "onChange"
     })
 
-    function handleRegister(data: FormData) {
-        console.log(data)
+    async function handleRegister(data: FormData) {
+        createUserWithEmailAndPassword(auth, data.email, data.password)
+            .then(async (user) => {
+                await updateProfile(user.user, {
+                    displayName: data.name
+                }).then(() => {
+                    toast.success("Usuário cadastrado com sucesso!")
+                    navigate("/dashboard", { replace: true })
+                }).catch(erro => {
+                    toast.error("Erro ao cadastrar usuário!")
+                    console.log(erro)
+                })
+            })
     }
+
+    useEffect(() => {
+        async function handleLogout() {
+            await signOut(auth)
+        }
+
+        handleLogout()
+    }, [])
 
     return (
         <form className="space-y-4" onSubmit={handleSubmit(handleRegister)}>
-            <div className="flex flex-col">
-                <label htmlFor="name" className="font-bold">Nome</label>
-                <Input type="text" name="name" error={errors.name?.message} register={register} />
-            </div>
+            <Input type="text" name="name" error={errors.name?.message} register={register} placeholder="Digite seu nome" />
 
-            <div className="flex flex-col">
-                <label htmlFor="email" className="font-bold">E-mail</label>
-                <Input type="text" name="email" error={errors.email?.message} register={register} />
-            </div>
+            <Input type="text" name="email" error={errors.email?.message} register={register} placeholder="Digite seu e-mail" />
 
-            <div className="flex flex-col">
-                <label htmlFor="password" className="font-bold">Senha</label>
-                <Input type="password" name="password" error={errors.password?.message} register={register} />
-            </div>
+            <Input type="password" name="password" error={errors.password?.message} register={register} placeholder="Digite sua senha" />
 
-            <div className="flex flex-col">
-                <label htmlFor="confirmPassword" className="font-bold">Confirmar Senha</label>
-                <Input type="password" name="confirmPassword" error={errors.confirmPassword?.message} register={register} />
-            </div>
+            <Input type="password" name="confirmPassword" error={errors.confirmPassword?.message} register={register} placeholder="Confirme sua senha" />
 
             <div className="flex flex-row gap-4 items-center justify-end">
                 <Link to="/login" className="hover:underline">Já sou cadastrado!</Link>
