@@ -9,47 +9,17 @@ import { auth } from "../../services/firebaseConection";
 import { createUserWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
 import { toast } from "react-toastify";
 import { useEffect } from "react";
-
-
-const schema = z
-    .object({
-        name: z
-            .string()
-            .nonempty("O campo nome é obrigatório!"),
-
-        email: z
-            .string()
-            .email("Insira um email válido!")
-            .nonempty("O campo e-mail é obrigatório!"),
-
-        password: z
-            .string()
-            .min(6, "A senha deve ter no mínimo 6 caracteres!")
-            .regex(/[A-Z]/, "A senha deve conter pelo menos uma letra maiúscula!")
-            .regex(/[0-9]/, "A senha deve conter pelo menos um número!")
-            .regex(/[!@#$%^&*(),.?\":{}|<>]/, "A senha deve conter pelo menos um caractere especial!")
-            .nonempty("O campo senha é obrigatório!"),
-
-        confirmPassword: z
-            .string()
-            .nonempty("Confirme sua senha!"),
-    })
-    .refine((data) => data.password === data.confirmPassword, {
-        path: ["confirmPassword"], // erro aparece no campo de confirmação
-        message: "As senhas não coincidem!",
-    });
-
-type FormData = z.infer<typeof schema>
+import { RegisterFormData, registerSchema } from "../../types/Auth";
 
 export function Register() {
     const navigate = useNavigate()
 
-    const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
-        resolver: zodResolver(schema),
-        mode: "onChange"
-    })
+    const { register, handleSubmit, formState: { errors } } = useForm<RegisterFormData>({
+    resolver: zodResolver(registerSchema),
+    mode: "onChange",
+  });
 
-    async function handleRegister(data: FormData) {
+    async function handleRegister(data: RegisterFormData) {
         createUserWithEmailAndPassword(auth, data.email, data.password)
             .then(async (user) => {
                 await updateProfile(user.user, {
