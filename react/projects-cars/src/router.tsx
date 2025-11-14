@@ -10,7 +10,7 @@ import { CarDetail } from "./pages/Car";
 import { LayoutMain } from "./components/Layout/main";
 import { NewCar } from "./pages/Dashboard/New";
 import { LayoutAuth } from "./components/Layout/auth";
-
+import { Private } from "./routes/Private";
 
 export const router = createBrowserRouter([
 
@@ -24,38 +24,21 @@ export const router = createBrowserRouter([
                         path: "/",
                         element: <Home />
                     },
-                ]
-            },
-            {
-                element: <LayoutDashboard />,
-                children: [
                     {
                         path: "/car-detail/:uid",
                         element: <CarDetail />
                     },
+                ]
+            },
+            {
+                element: <Private><LayoutDashboard /></Private>,
+                children: [
                     {
                         path: "/dashboard",
                         element: <Dashboard />
                     },
                     {
-                        path: "/new-car",
-                        element: <NewCar />
-                    },
-                ]
-            },
-            {
-                element: <LayoutAuth />,
-                children: [
-                    {
-                        path: "/car-detail/:uid",
-                        element: <CarDetail />
-                    },
-                    {
-                        path: "/dashboard",
-                        element: <Dashboard />
-                    },
-                    {
-                        path: "/new-car",
+                        path: "/dashboard/new-car",
                         element: <NewCar />
                     },
                 ]
@@ -71,7 +54,7 @@ export const router = createBrowserRouter([
                         path: "/register",
                         element: <Register />
                     },
-                   
+
                 ]
             },
             {

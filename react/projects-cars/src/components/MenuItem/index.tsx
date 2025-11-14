@@ -12,6 +12,7 @@ export function MenuItem({ icon, label, to, isOpen }: MenuItemProps) {
     return (
         <NavLink
             to={to}
+            end
             title={!isOpen ? label : ""}
             className={({ isActive }) =>
                 `flex items-center gap-3 rounded-md p-2 cursor-pointer transition-colors hover:bg-zinc-800 

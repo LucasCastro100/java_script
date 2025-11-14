@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import { FiLogIn, FiUser } from "react-icons/fi";
 import { LogoText } from "../LogoText";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/Auth";
 
 export function HeaderHome() {
-    const signed = false
-    const loadingAuth = false
+    const {signed, loadingAuth} = useContext(AuthContext)
 
     return (
         <div className="border-b-2 border-b-gray-600 w-full">

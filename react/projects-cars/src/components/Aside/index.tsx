@@ -21,7 +21,7 @@ export function Aside({ isOpen, toggle }: AsideProps) {
             <nav className="flex flex-col gap-4 w-full">
                 <MenuItem to="/" icon={<FaHome />} label="Home" isOpen={isOpen} />
                 <MenuItem to="/dashboard" icon={<FaChartBar />} label="Dashboard" isOpen={isOpen} />
-                <MenuItem to="/car-detail" icon={<FaCar />} label="Carros" isOpen={isOpen} />
+                <MenuItem to="/dashboard/new-car" icon={<FaCar />} label="Carros" isOpen={isOpen} />
             </nav>
         </aside>
     );

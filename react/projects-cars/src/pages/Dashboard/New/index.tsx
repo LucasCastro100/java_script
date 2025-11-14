@@ -5,7 +5,7 @@ import { SubContainer } from "../../../components/SubContainer";
 export function NewCar() {
     return (
         <Container>
-            <HeaderDashboard url={'/'} title={'Dashboard'} />
+            <HeaderDashboard url={'/'} title={'Novo Carro'} />
 
             <SubContainer>
                 <div className="">New Car</div>
