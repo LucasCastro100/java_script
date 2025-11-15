@@ -1,5 +1,4 @@
 import { Container } from "../../components/Cointainer";
-import { SubContainer } from "../../components/SubContainer";
 import { HeaderDashboard } from "../../components/Header/dashboard";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/Auth";
@@ -17,17 +16,17 @@ export function Dashboard() {
 
     return (
         <Container>
-            <HeaderDashboard url={'/'} title={'Dashboard'} />
+            <HeaderDashboard url={'/dashboard'} title={'Dashboard'} />
 
-            <SubContainer>
+            <div className="w-full p-4">
                 <div className="text-xl font-medium">
                     {getGreeting()} {user?.name}
                 </div>
 
                 <div className="">
-                    
+
                 </div>
-            </SubContainer>
+            </div>
         </Container>
     );
 }

@@ -1,6 +1,6 @@
 
 import { ButtonAuth } from "../../components/Button/auth";
-import { Input } from "../../components/Input";
+import { Input } from "../../components/Form/Input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link, useNavigate } from "react-router-dom";
@@ -40,9 +40,9 @@ export function Login() {
 
     return (
         <form className="space-y-4" onSubmit={handleSubmit(handleLogin)}>
-            <Input type="text" name="email" placeholder="Digite seu melhor e-mail" error={errors.email?.message} register={register} />
+            <Input type="text" name="email" placeholder="Digite seu melhor e-mail" error={errors.email?.message} register={register}  className="border-gray-950 text-gray-950  placeholder:text-gray-950"/>
 
-            <Input type="password" name="password" placeholder="Digite sua melhor senha" error={errors.password?.message} register={register} />
+            <Input type="password" name="password" placeholder="Digite sua melhor senha" error={errors.password?.message} register={register}  className="border-gray-950 text-gray-950 placeholder:text-gray-950"/>
 
             <div className="flex flex-row gap-4 items-center justify-end">
                 <Link to="/register" className="hover:underline">Não tenho cadastro!</Link>

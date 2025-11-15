@@ -18,7 +18,7 @@ export function Input({ type, placeholder, name, className, register, error, rul
         placeholder={placeholder}             
         {...register(name, rules)}  
         id={name}
-        className={`w-full h-10 rounded-md px-2 border-2 border-gray-950 text-gray-950 focus:border-gray-500 placeholder:text-gray-950 ${className}`}
+        className={`w-full h-10 rounded-md px-2 border-2 focus:border-gray-500 ${className}`}
       />
 
       {error && <p className="text-red-800 text-sm mt-1">{error}</p>}

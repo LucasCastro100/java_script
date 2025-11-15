@@ -4,15 +4,17 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Input } from "../../components/Input";
+import { Input } from "../../components/Form/Input";
 import { auth } from "../../services/firebaseConection";
 import { createUserWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
 import { toast } from "react-toastify";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { RegisterFormData, registerSchema } from "../../types/Auth";
+import { AuthContext } from "../../contexts/Auth";
 
 export function Register() {
     const navigate = useNavigate()
+    const { handleInfoUser }= useContext(AuthContext)
 
     const { register, handleSubmit, formState: { errors } } = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
@@ -25,6 +27,12 @@ export function Register() {
                 await updateProfile(user.user, {
                     displayName: data.name
                 }).then(() => {
+                    handleInfoUser({
+                        uid: user.user.uid,
+                        name: data.name,
+                        email: data.email
+                    })
+                    
                     toast.success("Usuário cadastrado com sucesso!")
                     navigate("/dashboard", { replace: true })
                 }).catch(erro => {
