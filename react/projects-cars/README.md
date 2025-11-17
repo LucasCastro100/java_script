@@ -5,3 +5,7 @@
 
 # COntext
 -- para validar o usuario logado no Context/Auth.ts
+
+# Upload
+-- npm instal uuid
+-- npm install @types/uuid --save-dev
