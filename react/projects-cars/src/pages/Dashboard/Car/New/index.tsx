@@ -14,8 +14,6 @@ import { ChangeEvent, useContext, useState } from "react";
 import { AuthContext } from "../../../../contexts/Auth";
 import { v4 as uuidV4 } from "uuid";
 import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
-import { ca } from "zod/locales";
-import { update } from "firebase/database";
 
 interface ImageItemProps {
     uid: string;
@@ -134,7 +132,7 @@ export function NewCar() {
                         </div>
 
                         <div className="">
-                            <input type="file" name="image" accept="image/*" className="opacity-0 cursor-pointer absolute left-0 w-full h-full" title="Adicionar Imagem" onChange={handleFile} />
+                            <input type="file" name="image" accept="image/*" className="opacity-0 cursor-pointer absolute top-0 left-0 w-full h-full z-50" title="Adicionar Imagem" onChange={handleFile} />
                         </div>
                     </button>
 

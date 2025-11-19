@@ -1,1 +1,14 @@
-## REACT - REACT NATIVE - NODE
+# SWIPER 
+-- PARA SLIDERS
+
+# ZOD
+-- PARA VALIDAÇÃO DE FORMLUARIOS
+
+# ECHARST
+-- PARA GRAFICOS
+
+# JEST & TESTING LIBRARY
+-- PARA TESTES AUTOMATIZADOS
+
+# CONFIGURANDO JEST
+-- [PDF configurando JEST](https://gold-bakery-4bf.notion.site/React-Vite-configurando-Jest-bfe591d7f17a4a3b995336e62b9a007e?pvs=25)

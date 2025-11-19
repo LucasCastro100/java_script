@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { ListCar } from "../../components/Car/List";
 import { CarsProps } from "../../types/ListCars";
-import { collection, getDocs, orderBy, query, where } from "firebase/firestore";
+import { collection, getDocs, onSnapshot, orderBy, query, where } from "firebase/firestore";
 import { db } from "../../services/firebaseConection";
+import { ca } from "zod/locales";
 
 export function Home() {
   const [cars, setCars] = useState<CarsProps[]>([]);
@@ -10,7 +11,14 @@ export function Home() {
   const carsRef = collection(db, 'cars')
 
   async function handleSearchCars() {
-    const queryRef = query(carsRef, where('name', '==', search))
+    if(search === '') {
+      loadCards()
+      return;
+    }
+
+    setCars([])
+
+    const queryRef = query(carsRef, where('name', '>=', search), where('name', '<=', search + "\uf8ff"))
 
     getDocs(queryRef).then((snapshot) => {
       const list: any = []
@@ -27,19 +35,18 @@ export function Home() {
           images: doc.data().images,
         })
       })
-
-      console.log(list)
-      // setSearch(list)
+      
+      setCars(list)
+      console.log(cars)
     })
   }
 
-  async function loadCars() {
-
-    const queryRef = query(carsRef, orderBy('createdAt', 'desc'))
-
-    getDocs(queryRef).then((snapshot) => {
-      const list: any = []
-
+  function loadCards(){
+    const queryRef = query(carsRef, orderBy("createdAt", "desc"));
+  
+    const unsubscribe = onSnapshot(queryRef, (snapshot) => {
+      const list: any[] = [];
+  
       snapshot.forEach((doc) => {
         list.push({
           id: doc.id,
@@ -50,16 +57,19 @@ export function Home() {
           city: doc.data().city,
           km: doc.data().km,
           images: doc.data().images,
-        })
-      })
-
-      setCars(list)
-    })
+        });
+      });
+  
+      setCars(list);
+    });
+  
+    // Remove listener quando o componente desmontar
+    return () => unsubscribe();
   }
 
   useEffect(() => {
-    loadCars()
-  }, [])
+    loadCards()
+  }, []);
   
   return (
     <div className="space-y-8">
@@ -68,7 +78,7 @@ export function Home() {
         <button className="bg-gray-500 rounded-xl px-4 py-2" onClick={handleSearchCars}>Pesquisar</button>
       </div>
 
-      <ListCar cars={cars} idDelete={false} />
+      <ListCar cars={cars} isDelete={false} />
     </div>
   );
 }

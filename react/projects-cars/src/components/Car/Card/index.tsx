@@ -3,8 +3,9 @@ import { CarsProps } from "../../../types/ListCars"
 import { useState } from "react";
 import { FiTrash } from "react-icons/fi";
 import { deleteDoc, doc } from "firebase/firestore";
-import { db } from "../../../services/firebaseConection";
+import { db, storage } from "../../../services/firebaseConection";
 import { toast } from "react-toastify";
+import { deleteObject, ref } from "firebase/storage";
 
 type CardCardProps = {
     data: CarsProps
@@ -12,6 +13,7 @@ type CardCardProps = {
 }
 
 export function CardCar({ data, isDelete }: CardCardProps) {
+    console.log("Delete", isDelete)
     const [loadImages, setLoadImages] = useState<string[]>([]);
     const navigate = useNavigate();
 
@@ -20,21 +22,29 @@ export function CardCar({ data, isDelete }: CardCardProps) {
         setLoadImages((prevImageLoad) => [...prevImageLoad, id]);
     }
 
-    async function handleDeleteCar(id: string) {
-        const carRef = doc(db, 'cars', id);
+    async function handleDeleteCar(car: CarsProps) {
+        const carRef = doc(db, 'cars', car.id);
         await deleteDoc(carRef);
-        navigate("/dashboard/my-cars", {
-            state: { showToast: true }   // ← manda a informação para a página anterior
-          });
-        toast.success("Carro deletado com sucesso!");
+
+        car.images.map(async (image) => {
+            const imagesPath = `images/${image.uid}/${image.name}`;
+            const imagemRef = ref(storage, imagesPath)
+
+            try {
+                await deleteObject(imagemRef)                
+                toast.success("Carro deletado com sucesso!");
+            } catch (error) {
+                toast.success("Erro ao deletar iamgens!");
+            }
+        })
     }
 
     return (
         <div className="w-full rounded-xl border-2 border-gray-500 relative">
             {
                 isDelete && (
-                    <button className="absolute top-1 right-1 cursor-pointer z-50" onClick={() => handleDeleteCar(data.id)}>
-                        <FiTrash size={30} color="black" />
+                    <button className="absolute top-2 right-2 cursor-pointer z-50 bg-white rounded-full p-2" onClick={() => handleDeleteCar(data)}>
+                        <FiTrash size={25} color="black" />
                     </button>
                 )
             }
