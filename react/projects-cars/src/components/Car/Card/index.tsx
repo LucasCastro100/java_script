@@ -39,7 +39,7 @@ export function CardCar({ data, isDelete }: CardCardProps) {
                 )
             }
 
-            <Link to={`/car-detail/${data.uid}`}>
+            <Link to={`/car-detail/${data.id}`}>
                 <div className="z-0">
                     <div className="">
                         <div className="w-full bg-gray-800 h-72 rounded-t-xl" style={{ display: loadImages.includes(data.id) ? "none" : "block" }}></div>
