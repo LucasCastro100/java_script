@@ -1,9 +1,7 @@
-import { it } from "node:test";
-import { describe } from "node:test";
 
-describe("First teste App component", () => {
-    it("should be true", () => {
-        expect(true).toBe(true);
+describe("First test App component", () => {
+    it("should adds 1 + 2 to equal 3", () => {
+        expect(1 + 2).toBe(3);
     })
 })
 
