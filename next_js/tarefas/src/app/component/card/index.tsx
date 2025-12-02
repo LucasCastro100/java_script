@@ -1,4 +1,4 @@
-import { IndicatorProps } from "../../types/indicator";
+import { IndicatorProps } from "../../types/Indicator";
 
 export function Indicator({ title, className }: IndicatorProps) {
     return (
