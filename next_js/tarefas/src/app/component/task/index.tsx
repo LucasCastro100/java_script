@@ -31,9 +31,9 @@ export function Task({ data }: TaskCompoentProps) {
 
                     )}
 
-                    <h3 className="font-bold text-xl">{data.title}</h3>
+                    <h3 className="font-bold text-xl">{data.task}</h3>
 
-                    {data.description && <p className="text-gray-600 whitespace-pre-line">{data.description}</p>}
+                    {/* {data.description && <p className="text-gray-600 whitespace-pre-line">{data.description}</p>} */}
 
                     <p className={`font-medium ${data.completed ? 'text-green-600' : 'text-red-600'}`}>
                         {data.completed ? 'Concluída' : 'Pendente'}
