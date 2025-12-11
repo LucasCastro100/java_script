@@ -13,18 +13,15 @@ export function MyCars() {
     const { user } = useContext(AuthContext);
     const [cars, setCars] = useState<CarsProps[]>([]);
 
-    async function loadCars() {
-        if (!user?.uid) {
-            return;
-        }
-
-        const carsRef = collection(db, 'cars')
-        const queryRef = query(carsRef, where('uid', '==', user?.uid))
-
-        getDocs(queryRef).then((snapshot) => {
-            const list = [] as CarsProps[]
-            console.log(snapshot.docs)
-
+    useEffect(() => {
+        if (!user?.uid) return;
+    
+        const carsRef = collection(db, "cars");
+        const queryRef = query(carsRef, where("uid", "==", user.uid));
+    
+        const unsubscribe = onSnapshot(queryRef, (snapshot) => {
+            const list = [] as CarsProps[];
+    
             snapshot.forEach((doc) => {
                 list.push({
                     id: doc.id,
@@ -35,18 +32,15 @@ export function MyCars() {
                     city: doc.data().city,
                     uid: doc.data().uid,
                     images: doc.data().images,
-                })
-            })
-
-            setCars(list)
-        })
-    }
-
-    useEffect(() => {
-        loadCars()
-        
-    }, [])
-
+                });
+            });
+    
+            setCars(list);
+        });
+    
+        return () => unsubscribe(); // remove listener ao desmontar
+    }, []);
+    
     return (
         <Container>
             <HeaderDashboard url={'/dashboard'} title={'Perfil'}>
@@ -69,7 +63,7 @@ export function MyCars() {
 
                 ) : (
                     <div>
-                        <ListCar cars={cars} idDelete={true}/>
+                        <ListCar cars={cars} isDelete={true}/>
                     </div>
                 )}
             </div>

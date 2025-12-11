@@ -9,3 +9,6 @@
 # Upload
 -- npm instal uuid
 -- npm install @types/uuid --save-dev
+
+# Slider
+-- npm install swiper
