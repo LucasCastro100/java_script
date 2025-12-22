@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function GET(request: Request){
     try{
-        const res = await fetch(process.env.DALY_GAMES_API_URL + "/games?sort-by=alphabetical", {
+        const res = await fetch(process.env.NEXT_PUBLIC_DAILY_GAMES_API_URL + "/games?sort-by=alphabetical", {
             cache: "no-store",
         })
     
