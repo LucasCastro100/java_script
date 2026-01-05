@@ -7,15 +7,17 @@ export const metadata: Metadata = {
     description: "Listagem | Consulta | Detalhes de jogos",
 };
 
-async function getGames() {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/games`, { cache: "no-store" });
+async function getGames(id: number) {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/game?id=${id}`, { cache: "no-store" });
     const data = await res.json();
     return data.content as GameCardDTO[];
 }
 
 export default async function Page() {
-    const games = await getGames();
+    // const {id} = params;
+    const games = await getGames(1);
     return (
+        
         <GameList games={games} />
     )
 }
