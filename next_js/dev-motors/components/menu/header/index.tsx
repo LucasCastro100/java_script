@@ -6,6 +6,7 @@ import { Menu } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Sidebar } from "../sidebar";
 import { MENU_ITEMS, SUB_MENU_ITEMS } from "../menu.config";
+import { SubHeader } from "../sub-header";
 
 export function Header() {
   const pathname = usePathname();
@@ -59,7 +60,13 @@ export function Header() {
         </nav>
       </div>
 
-      {/* SIDEBAR */}
+      {/* ===== SUBHEADER (DESKTOP) ===== */}
+      <SubHeader
+        items={SUB_MENU_ITEMS}
+        show={pathname === '/'}
+      />
+
+      {/* ===== SIDEBAR MOBILE ===== */}
       <Sidebar
         open={openMenu}
         onClose={() => setOpenMenu(false)}
