@@ -1,0 +1,70 @@
+Estrutura do Backend em Node.js/TypeScript
+
+1. **config**
+
+* Função: Armazena configurações da aplicação.
+* Exemplos de uso:
+
+  * Configurações do banco de dados (MongoDB, Postgres, etc.)
+  * Variáveis de ambiente (.env) ou chaves de API
+  * Configurações de porta, CORS, JWT, etc.
+* Objetivo: Centralizar todas as configs para que não precise ficar espalhando valores mágicos pelo código.
+
+2. **controllers**
+
+* Função: Contêm a lógica de "controlar" o que acontece quando uma rota é chamada.
+* Exemplos de uso:
+
+  * Receber requisições (req), chamar serviços e enviar respostas (res).
+  * Ex.: UserController com métodos como createUser, getUser, updateUser.
+* Objetivo: Separar a lógica de negócios do roteamento e da persistência de dados.
+
+3. **middlewares**
+
+* Função: Funções que ficam entre a requisição e a resposta.
+* Exemplos de uso:
+
+  * Autenticação (verificar token JWT)
+  * Validação de dados
+  * Logging de requisições
+* Objetivo: Reutilizar lógica comum antes que a requisição chegue no controller.
+
+4. **schemas**
+
+* Função: Definição da estrutura dos dados.
+* Exemplos de uso:
+
+  * Schemas do Mongoose (MongoDB)
+  * Validação de requisição com Joi ou Zod
+* Objetivo: Garantir que os dados estejam corretos e estruturados.
+
+5. **services**
+
+* Função: Contém a lógica de negócios mais complexa ou que interage diretamente com o banco.
+* Exemplos de uso:
+
+  * Processamento de dados antes de salvar
+  * Chamadas a APIs externas
+  * Regras de negócio específicas
+* Objetivo: Separar lógica de negócio do controller para manter o código organizado e testável.
+
+6. **routes**
+
+* Função: Define as rotas/endpoints da aplicação.
+* Exemplos de uso:
+
+  * app.get('/users', UserController.getUsers)
+  * app.post('/login', AuthController.login)
+* Objetivo: Mapear URLs para controllers e middlewares.
+
+7. **server.ts**
+
+* Função: Ponto de entrada da aplicação.
+* Exemplos de uso:
+
+  * Inicializar o servidor Express
+  * Conectar ao banco de dados
+  * Carregar rotas e middlewares globais
+* Objetivo: Iniciar e configurar toda a aplicação.
+
+8. **ORM - Prisma**
