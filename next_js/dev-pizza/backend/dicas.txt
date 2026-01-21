@@ -68,3 +68,11 @@ Estrutura do Backend em Node.js/TypeScript
 * Objetivo: Iniciar e configurar toda a aplicação.
 
 8. **ORM - Prisma**
+npm install prisma @types/node @types/pg --save-dev 
+npm install @prisma/client @prisma/adapter-pg pg dotenv
+npx prisma init
+npm install --save-dev prisma dotenv
+npx prisma init --db --output ../generated/prisma
+npx prisma migrate dev - roda as migrate
+
+npx prisma studio postgresql://postgres:mudar123@localhost:5432/dev_pizza - para ver banco de dados online

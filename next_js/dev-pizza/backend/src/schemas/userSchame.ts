@@ -14,3 +14,14 @@ export const createUserSchema = z.object({
     .min(6, "A senha precisa ter no minimo 6 caracteres"),
   }),
 });
+
+export const authUserSchema = z.object({
+  body: z.object({
+    email: z
+    .email("Precisa ser um email valido"),
+
+    password: z
+    .string("A senha é obrigatoria")
+    .min(1, "A senha é obrigatoria"),
+  }),
+})
