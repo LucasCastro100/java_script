@@ -1,10 +1,13 @@
-export class ListUserService{
-    async execute(){
-        const users = [
-            { id: 1, name: "Alice" },
-            { id: 2, name: "Bob" },
-        ];
+import { prisma } from "../../lib/prisma";
 
-        return ({ msg: "Lista de usuários", data: users });
+export class ListUserService {
+  async execute() {
+    try {
+      const users = await prisma.user.findMany();
+
+      return { msg: "Lista de usuários", data: users };
+    } catch (err) {
+      throw new Error("Erro ao listar usuários!");
     }
+  }
 }
